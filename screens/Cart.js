@@ -7,7 +7,6 @@ import {
   Image,
 } from 'react-native';
 import React, {useContext} from 'react';
-import useCart from '../hooks/useCart';
 import CouponCode from '../components/CouponCode';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import CartItem from '../components/CartItem';
 import {StateContext} from '../context/context';
+
 const Cart = () => {
   const {cartItems, totalPrice} = useContext(StateContext);
   const navigation = useNavigation();

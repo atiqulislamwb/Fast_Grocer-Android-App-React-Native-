@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ProductItemRow from '../components/ProductItemRow';
 import {useNavigation} from '@react-navigation/native';
@@ -76,13 +75,11 @@ const GroceryResult = () => {
             <TextInput
               style={{
                 height: 50,
-                outlineWidth: 0,
                 borderBottomWidth: 0,
                 borderColor: 'transparent',
 
                 borderWidth: 1,
-                placeholderTextColor: 'black',
-                placeholderTextSize: 16,
+
                 width: 260,
               }}
               placeholder="Search Medicine Products"

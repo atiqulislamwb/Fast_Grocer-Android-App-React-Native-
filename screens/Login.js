@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -24,15 +24,19 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import useAuth from '../hooks/useAuth';
-const auth = getAuth(app);
+
+import {StateContext} from './../context/context';
+import useAuth from './../hooks/useAuth';
+
 const Login = () => {
+  const auth = getAuth(app);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
   const {setUser, loading, setLoading} = useAuth();
 
+  const provider = new GoogleAuthProvider();
   const handleLoginSubmit = () => {
     // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
     //   Alert.alert(' Please provide correct email address');
@@ -74,29 +78,44 @@ const Login = () => {
       });
   };
 
-  // const saveToDatabase = user => {
-  //   const userInformation = {
-  //     email: user?.email,
-  //     createdAt: new Date(),
-  //   };
-  //   console.log(user?.displayName);
-  //   setLoading(true);
-  //   fetch(`https://fgrocer.vercel.app/users/${email}`, {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(userInformation),
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data.status === true) {
-  //         setLoading(false);
-  //         console.log('save to database successfully');
-  //       } else {
-  //         console.log('data not save to database ');
-  //       }
-  //     });
-  //   setLoading(false);
-  // };
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        setLoading(true);
+        const user = result.user;
+        setUser(user);
+        saveToDatabase(user);
+        saveUserJWT(user);
+        setLoading(false);
+        navigate(from, {replace: true});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const saveToDatabase = user => {
+    const userInformation = {
+      name: user?.displayName,
+      email: user?.email,
+    };
+    setLoading(true);
+    fetch(`https://fgrocer.vercel.app/users/${user?.email}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(userInformation),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === true) {
+          setLoading(false);
+          console.log('save to database successfully');
+        } else {
+          console.log('data not save to database ');
+        }
+      });
+    setLoading(false);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -179,7 +198,7 @@ const Login = () => {
         </Text>
       </TouchableOpacity>
       <View style={styles.divider}></View>
-      <TouchableOpacity style={styles.socialButton}>
+      <TouchableOpacity onPress={handleGoogleLogin} style={styles.socialButton}>
         <AntDesign name="google" size={35} color="#4285F4" />
         <Text style={styles.socialButtonText}>Continue with Google</Text>
       </TouchableOpacity>

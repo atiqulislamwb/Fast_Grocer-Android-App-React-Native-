@@ -5,35 +5,55 @@ import {
   SafeAreaView,
   StyleSheet,
   Image,
+  ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {StateContext} from './../context/context';
 import useAuth from '../hooks/useAuth';
 
-const DrawerContent = () => {
+const DrawerContent = ({toggleDrawer}) => {
   const navigation = useNavigation();
-  const {user, handleLogout} = useAuth();
-  console.log(user);
+  const {user} = useAuth();
+
   return (
     <SafeAreaView style={{flex: 1, height: '100%'}}>
+      {/* <TouchableOpacity
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: 5,
+          alignItems: 'flex-end',
+        }}
+        onPress={() => toggleDrawer()}>
+        <Entypo name="squared-cross" color="red" size={35} />
+      </TouchableOpacity> */}
       {user && (
-        <View
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Account')}
           style={{
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center',
+            backgroundColor: '#F4F4F5',
+            marginLeft: 30,
+            marginRight: 30,
+            marginTop: 20,
+            borderRadius: 20,
           }}>
           <View
             style={{
               width: 50,
               height: 50,
               marginTop: 20,
-              borderRadius: 25,
+              borderRadius: 30,
 
               display: 'flex',
               alignItems: 'center',
@@ -41,42 +61,27 @@ const DrawerContent = () => {
               borderColor: '#79AB42',
               borderWidth: 2,
               flexDirection: 'column',
+              marginBottom: 10,
             }}>
-            {user?.photoURL ? (
-              <Image
-                source={{
-                  uri: user?.photoURL,
-                }}
-              />
-            ) : (
-              <Image
-                source={{
-                  uri: 'https://cdn-icons-png.flaticon.com/512/219/219986.png',
-                }}
-              />
-            )}
+            <Image
+              source={{
+                uri:
+                  user?.photoUrl ||
+                  'https://i.ibb.co/PC1s2Wx/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png',
+              }}
+              resizeMode="cover"
+              style={{width: '100%', height: '100%'}}
+            />
           </View>
-          <Text>{user?.displayName}</Text>
-          <TouchableOpacity
+          <Text
             style={{
-              backgroundColor: '#E2E8F0',
-              marginTop: 15,
-              display: 'flex',
-              paddingVertical: 8,
-              paddingHorizontal: 20,
-              borderRadius: 5,
-            }}
-            onPress={() => handleLogout()}>
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: '700',
-                color: '#79AB42',
-              }}>
-              Logout
-            </Text>
-          </TouchableOpacity>
-        </View>
+              color: '#400010',
+              fontSize: 17,
+              fontWeight: 'bold',
+            }}>
+            {user?.displayName}
+          </Text>
+        </TouchableOpacity>
       )}
       {!user && (
         <View
@@ -116,42 +121,39 @@ const DrawerContent = () => {
           </TouchableOpacity>
         </View>
       )}
-      <View
-        style={{
-          marginTop: 40,
-        }}>
-        {/* Egg Club */}
-        <TouchableOpacity
-          onPress={() => navigation.navigate('EggClub')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-            padding: 10,
-            borderRadius: 5,
-            backgroundColor: '#F2F4EC',
-          }}>
-          <View style={styles.innerWrapper}>
-            <View>
-              <MaterialCommunityIcons
-                name="egg-easter"
-                size={28}
-                color="#F7C600"
-              />
-            </View>
 
-            <Text style={styles.text}>Egg Club</Text>
-          </View>
+      {/* Egg Club */}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('EggClub')}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          padding: 10,
+          borderRadius: 5,
+          backgroundColor: '#fff',
+          marginTop: 40,
+          borderWidth: 1,
+          borderColor: '#D4D4D8',
+          marginBottom: 10,
+        }}>
+        <View style={styles.innerWrapper}>
           <View>
-            <MaterialIcons
-              name="keyboard-arrow-right"
+            <MaterialCommunityIcons
+              name="egg-easter"
               size={28}
-              color="black"
+              color="#F7C600"
             />
           </View>
-        </TouchableOpacity>
 
+          <Text style={styles.text}>Egg Club</Text>
+        </View>
+        <View>
+          <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+        </View>
+      </TouchableOpacity>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* All Stores */}
         <TouchableOpacity
           onPress={() => navigation.navigate('AllStores')}
@@ -199,12 +201,119 @@ const DrawerContent = () => {
             />
           </View>
         </TouchableOpacity>
-      </View>
-      <View style={styles.divider}></View>
 
-      {/* down divider content */}
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Coupons')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <MaterialIcons name="local-offer" size={28} color="#F4BC1C" />
+              </View>
 
-      <View>
+              <Text style={styles.text}>Coupons</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Favorites')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <AntDesign name="heart" size={26} color="#AA0601" />
+              </View>
+
+              <Text style={styles.text}>Favorites</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+
+        <View style={styles.divider}></View>
+
+        {/* down divider content */}
+
+        {/* order history */}
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('OrderHistory')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <Entypo name="stopwatch" size={28} color="#4F93FF" />
+              </View>
+
+              <Text style={styles.text}>Order History</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+
+        {/* payment history */}
+
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('PaymentHistory')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <FontAwesome name="money" size={27} color="#058C40" />
+              </View>
+
+              <Text style={styles.text}>Payment History</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+
+        {/* Reward */}
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('EarnReward')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <MaterialIcons name="stars" size={28} color="#E85B15" />
+              </View>
+
+              <Text style={styles.text}>Earn a Reward</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+
         {/* Daily deals */}
         <TouchableOpacity
           onPress={() => navigation.navigate('DailyDeals')}
@@ -228,6 +337,29 @@ const DrawerContent = () => {
             />
           </View>
         </TouchableOpacity>
+
+        {/* complaint file */}
+
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('FileComplaint')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <Entypo name="chat" size={28} color="#FF6666" />
+              </View>
+
+              <Text style={styles.text}>File a Complaint</Text>
+            </View>
+            <View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={28}
+                color="black"
+              />
+            </View>
+          </TouchableOpacity>
+        )}
 
         {/* Help  */}
         <TouchableOpacity
@@ -276,24 +408,28 @@ const DrawerContent = () => {
             <Text style={styles.text}>Live Chat</Text>
           </View>
         </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-        }}>
-        <Text style={{color: '#475569', marginTop: 30, fontSize: 10}}>
-          All &copy; Right Reserved By Md Atiqul Islam
-        </Text>
-        <Text style={{color: '#475569', marginTop: 2, fontSize: 10}}>
-          v1.1.1
-        </Text>
-      </View>
+
+        <View
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}>
+          <Text style={{color: '#475569', marginTop: 30, fontSize: 10}}>
+            All &copy; Right Reserved By Md Atiqul Islam
+          </Text>
+          <Text style={{color: '#475569', marginTop: 2, fontSize: 10}}>
+            v1.1.1
+          </Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   text: {color: 'black', marginLeft: 9, color: 'black', fontSize: 14},

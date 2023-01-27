@@ -17,8 +17,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 
-import useAuth from '../hooks/useAuth';
 import app from '../firebase/auth.js';
+
+import {StateContext} from './../context/context';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -26,6 +27,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
+import useAuth from '../hooks/useAuth.js';
 
 const auth = getAuth(app);
 const SignUp = () => {
@@ -36,7 +38,8 @@ const SignUp = () => {
   const provider = new GoogleAuthProvider();
   const navigation = useNavigation();
 
-  const {loading, setLoading, user, setUser} = useAuth();
+  const {loading, setLoading} = useContext(StateContext);
+  const {user, setUser} = useAuth();
 
   const handleSignUp = () => {
     if (!name) {

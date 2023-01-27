@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useContext} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
-import useCart from '../hooks/useCart';
+
 import {StateContext} from '../context/context';
 
 const ProductItem = ({item}) => {

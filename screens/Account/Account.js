@@ -1,0 +1,223 @@
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import React, {useContext} from 'react';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
+import {StateContext} from './../../context/context';
+import useAuth from './../../hooks/useAuth';
+const Account = () => {
+  const {user, handleLogout} = useAuth();
+  const navigation = useNavigation();
+  return (
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+      <View>
+        <View
+          style={{
+            width: '100%',
+            height: 57,
+            padding: 10,
+            backgroundColor: '#F8FAFC',
+            borderBottomColor: '#E2E8F0',
+            borderBottomWidth: 1,
+          }}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginTop: 3,
+              flexDirection: 'row',
+              marginLeft: 6,
+            }}>
+            <AntDesign name="arrowleft" size={35} color="#000" />
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+                color: '#000',
+                marginLeft: 12,
+              }}>
+              Profile
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: '#fff',
+              marginLeft: 30,
+              marginRight: 30,
+
+              borderRadius: 20,
+            }}>
+            <View
+              style={{
+                width: 100,
+                height: 100,
+                marginTop: 20,
+                borderRadius: 30,
+
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderColor: '#79AB42',
+                borderWidth: 2,
+                flexDirection: 'column',
+                marginBottom: 10,
+              }}>
+              <Image
+                source={{
+                  uri:
+                    user?.photoUrl ||
+                    'https://i.ibb.co/PC1s2Wx/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png',
+                }}
+                resizeMode="cover"
+                style={{width: '100%', height: '100%'}}
+              />
+            </View>
+            <Text
+              style={{
+                color: '#400010',
+                fontSize: 17,
+                fontWeight: 'bold',
+              }}>
+              {user?.displayName}
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View style={styles.devider}></View>
+
+      {/* button */}
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('PersonalInformation')}
+        style={styles.wrapper}>
+        <View style={styles.innerWrapper}>
+          <View>
+            <Ionicons
+              name="md-person-circle-outline"
+              size={32}
+              color="#79AB42"
+            />
+          </View>
+
+          <Text style={styles.text}>Personal Information</Text>
+        </View>
+        <View>
+          <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ManageAddress')}
+        style={styles.wrapper}>
+        <View style={styles.innerWrapper}>
+          <View>
+            <Feather name="home" size={32} color="#79AB42" />
+          </View>
+
+          <Text style={styles.text}>Manage Address</Text>
+        </View>
+        <View>
+          <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Settings')}
+        style={styles.wrapper}>
+        <View style={styles.innerWrapper}>
+          <View>
+            <AntDesign name="setting" size={32} color="#79AB42" />
+          </View>
+
+          <Text style={styles.text}>Settings</Text>
+        </View>
+        <View>
+          <MaterialIcons name="keyboard-arrow-right" size={28} color="black" />
+        </View>
+      </TouchableOpacity>
+
+      {/* logout function  */}
+
+      <TouchableOpacity
+        onPress={() => handleLogout()}
+        style={{
+          position: 'absolute',
+          bottom: 20,
+          left: 10,
+        }}>
+        <View style={styles.innerWrapper}>
+          <View>
+            <MaterialCommunityIcons name="logout" size={32} color="#79AB42" />
+          </View>
+
+          <Text style={styles.text}>Logout</Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+export default Account;
+
+const styles = StyleSheet.create({
+  devider: {
+    width: '100%',
+    height: 1,
+    backgroundColor: '#D4D4D8',
+    marginTop: 25,
+    marginBottom: 15,
+  },
+  wrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: 10,
+    borderRadius: 5,
+  },
+  innerWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  text: {color: 'black', marginLeft: 9, color: 'black', fontSize: 14},
+});
+
+{
+  /* <TouchableOpacity
+style={{
+  backgroundColor: '#E2E8F0',
+  marginTop: 15,
+  display: 'flex',
+  paddingVertical: 8,
+  paddingHorizontal: 20,
+  borderRadius: 5,
+}}
+onPress={() => handleLogout()}>
+<Text
+  style={{
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#79AB42',
+  }}>
+  Logout
+</Text>
+</TouchableOpacity> */
+}

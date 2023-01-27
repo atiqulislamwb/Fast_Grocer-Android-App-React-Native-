@@ -2,7 +2,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Home from '../screens/Home';
-import Account from '../screens/Account';
 import Cart from '../screens/Cart';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';

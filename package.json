@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.11",
+    "@react-native-community/checkbox": "^0.5.14",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.3",
     "@react-navigation/native": "^6.1.2",
@@ -20,6 +21,7 @@
     "@tanstack/react-query": "^4.22.4",
     "firebase": "^9.16.0",
     "maven": "^5.0.0",
+    "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.1",
     "react-native-dotenv": "^3.4.7",

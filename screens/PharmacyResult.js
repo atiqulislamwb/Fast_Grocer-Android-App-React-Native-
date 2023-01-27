@@ -77,7 +77,7 @@ const PharmacyResult = () => {
             <TextInput
               style={{
                 height: 50,
-                outlineWidth: 0,
+
                 borderBottomWidth: 0,
                 borderColor: 'transparent',
 

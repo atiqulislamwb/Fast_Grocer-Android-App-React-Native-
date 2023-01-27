@@ -3,7 +3,7 @@ import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import useCart from './../hooks/useCart';
+
 import {StateContext} from './../context/context';
 import {useContext} from 'react';
 const CartButton = ({data}) => {

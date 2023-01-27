@@ -2,12 +2,14 @@ import React, {createContext, useEffect, useState} from 'react';
 import {useQuery} from '@tanstack/react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ToastAndroid} from 'react-native';
+
 const CART_STORAGE_KEY = 'CART_ITEMS';
+
 export const StateContext = createContext();
 
 export const ContextProvider = ({children}) => {
-  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
+
   // const [products, setProducts] = useState([]);
   const [medCategories, setMedCategories] = useState([]);
   const [medProducts, setMedProducts] = useState([]);
@@ -26,15 +28,12 @@ export const ContextProvider = ({children}) => {
     fetchCartItems();
   }, []);
 
-  const {
-    data: AllProducts,
-    isLoading,
-   
-  } = useQuery({
+  const {data: AllProducts, isLoading} = useQuery({
     queryKey: ['products'],
     queryFn: () =>
       fetch(`https://fgrocer.vercel.app/products`).then(res => res.json()),
   });
+
   const {
     data: MedProducts,
     isLoading: isMedLoading,
@@ -88,7 +87,7 @@ export const ContextProvider = ({children}) => {
   const removeItemFromCart = async itemId => {
     try {
       // Remove the item from the cart
-      const updatedCartItems = cartItems.filter(item => item._id !== itemId);
+      const updatedCartItems = cartItems?.filter(item => item._id !== itemId);
       setCartItems(updatedCartItems);
       // Save the updated cart to storage
       await AsyncStorage.setItem(
@@ -143,16 +142,20 @@ export const ContextProvider = ({children}) => {
       console.log(error);
     }
   };
+
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
+    0,
+  );
+
+  const totalQuantity = cartItems?.reduce(
+    (total, item) => total + item.quantity,
     0,
   );
 
   return (
     <StateContext.Provider
       value={{
-        user,
-        setUser,
         loading,
         setLoading,
         isLoading,
@@ -167,6 +170,7 @@ export const ContextProvider = ({children}) => {
         handleDecrement,
         handleIncrement,
         totalPrice,
+        totalQuantity,
       }}>
       {children}
     </StateContext.Provider>
