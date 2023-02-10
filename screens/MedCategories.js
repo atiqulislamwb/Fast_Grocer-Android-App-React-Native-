@@ -13,9 +13,10 @@ import {useNavigation} from '@react-navigation/native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {StateContext} from '../context/context';
+import useMedCategories from '../hooks/useMedCategories';
 
 const MedCategories = () => {
-  const {medCategories, isMedCategoriesLoading} = useContext(StateContext);
+  const {medCategories, isMedCategoriesLoading} = useMedCategories();
 
   const navigation = useNavigation();
   const {width} = useWindowDimensions();

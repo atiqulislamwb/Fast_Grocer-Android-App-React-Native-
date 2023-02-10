@@ -5,14 +5,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from './../context/context';
+import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 import MedCategory from './MedCategory';
+import useMedCategories from '../hooks/useMedCategories';
 
 const MedCategories = () => {
-  const {medCategories, isMedCategoriesLoading} = useContext(StateContext);
+  const {medCategories, isMedCategoriesLoading} = useMedCategories();
   const navigation = useNavigation();
   return (
     <View>

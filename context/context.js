@@ -27,20 +27,6 @@ export const ContextProvider = ({children}) => {
     fetchCartItems();
   }, []);
 
-  const {
-    data: medCategories,
-    isLoading: isMedCategoriesLoading,
-    isError: isMedCategoriesError,
-    error: medCategoryError,
-  } = useQuery({
-    queryKey: ['med-categories'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/med-categories`).then(res =>
-        res.json(),
-      ),
-    keepPreviousData: true,
-  });
-
   const addItemToCart = async product => {
     try {
       const isExist = cartItems?.find(p => p._id === product._id);
@@ -140,8 +126,6 @@ export const ContextProvider = ({children}) => {
       value={{
         loading,
         setLoading,
-        medCategories,
-        isMedCategoriesLoading,
         medProducts,
         cartItems,
         addItemToCart,

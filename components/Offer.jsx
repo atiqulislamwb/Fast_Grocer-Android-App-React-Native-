@@ -5,28 +5,17 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useQuery} from '@tanstack/react-query';
 import {useNavigation} from '@react-navigation/native';
+import useOfferProduct from '../hooks/useOfferProduct';
 
 const Offer = () => {
+  const {OfferProducts, isLoading} = useOfferProduct();
+
   const navigation = useNavigation();
-  const {
-    data: OfferProducts,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ['offer-products'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/offer-products`).then(res =>
-        res.json(),
-      ),
-  });
   const products = OfferProducts?.data;
   return (
     <View
