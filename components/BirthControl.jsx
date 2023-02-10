@@ -10,9 +10,10 @@ import React, {useContext} from 'react';
 import {StateContext} from './../context/context';
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import useAllMed from '../hooks/useAllMed';
 
 const BirthControl = () => {
-  const {MedProducts, isMedLoading} = useContext(StateContext);
+  const {MedProducts, isMedLoading} = useAllMed();
   const filterProducts = MedProducts?.data?.filter(
     item => item?.category === 'birth&control',
   );

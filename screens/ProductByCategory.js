@@ -12,11 +12,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
+import useAllProduct from '../hooks/useAllProduct';
 
 const ProductByCategory = ({route, navigation}) => {
   const {data} = route.params;
 
-  const {AllProducts, isLoading} = useContext(StateContext);
+  const {AllProducts, isLoading} = useAllProduct();
   const filterProducts = AllProducts?.data?.filter(
     item => item?.category === data?.value,
   );

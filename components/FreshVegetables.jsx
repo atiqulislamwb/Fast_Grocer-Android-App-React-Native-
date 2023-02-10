@@ -10,9 +10,10 @@ import React, {useContext} from 'react';
 import {StateContext} from './../context/context';
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import useAllProduct from '../hooks/useAllProduct';
 
 const FreshVegetables = () => {
-  const {AllProducts, isLoading} = useContext(StateContext);
+  const {AllProducts, isLoading} = useAllProduct();
   const freshVegetables = AllProducts?.data?.filter(
     product => product?.status === 'fresh&vegetables',
   );

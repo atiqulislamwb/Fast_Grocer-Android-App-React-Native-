@@ -12,11 +12,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
+import useAllMed from './../hooks/useAllMed';
 
 const ProductByMedCategory = ({route, navigation}) => {
   const {data} = route.params;
 
-  const {MedProducts, isMedLoading} = useContext(StateContext);
+  const {MedProducts, isMedLoading} = useAllMed();
   const filterProducts = MedProducts?.data?.filter(
     item => item?.category === data?.value,
   );

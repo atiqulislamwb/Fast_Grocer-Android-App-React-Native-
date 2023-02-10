@@ -10,10 +10,12 @@ import React, {useContext} from 'react';
 import {StateContext} from './../context/context';
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import useAllProduct from '../hooks/useAllProduct';
 
 const FlashSales = () => {
-  const { AllProducts, isLoading} = useContext(StateContext);
+  // const { AllProducts, isLoading} = useContext(StateContext);
 
+  const {AllProducts, isLoading} = useAllProduct();
   // const {data, isFetching, isLoading, error} = useGetAllGroceryProducts();
 
   const flashSalesProducts = AllProducts?.data?.filter(

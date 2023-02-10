@@ -6,13 +6,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from './../context/context';
+import React from 'react';
+
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import useAllProduct from '../hooks/useAllProduct';
 
 const SaltSugar = () => {
-  const {isLoading, AllProducts} = useContext(StateContext);
+  const {AllProducts, isLoading} = useAllProduct();
   const SaltSugar = AllProducts?.data?.filter(
     product => product?.status === 'salt&sugar',
   );

@@ -6,13 +6,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from './../context/context';
+import React from 'react';
+
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import useAllMed from '../hooks/useAllMed';
 
 const Vitamin = () => {
-  const {MedProducts, isMedLoading} = useContext(StateContext);
+  const {MedProducts, isMedLoading} = useAllMed();
 
   const filterProducts = MedProducts?.data?.filter(
     item => item?.category === 'vitamins&supplements',
