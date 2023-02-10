@@ -24,16 +24,16 @@ const DrawerContent = ({toggleDrawer}) => {
 
   return (
     <SafeAreaView style={{flex: 1, height: '100%'}}>
-      {/* <TouchableOpacity
+      <TouchableOpacity
         style={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-start',
           padding: 5,
-          alignItems: 'flex-end',
+          alignItems: 'flex-start',
         }}
         onPress={() => toggleDrawer()}>
         <Entypo name="squared-cross" color="red" size={35} />
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       {user && (
         <TouchableOpacity
           onPress={() => navigation.navigate('Account')}
@@ -427,9 +427,6 @@ const DrawerContent = ({toggleDrawer}) => {
     </SafeAreaView>
   );
 };
-
-
-
 
 const styles = StyleSheet.create({
   text: {color: 'black', marginLeft: 9, color: 'black', fontSize: 14},

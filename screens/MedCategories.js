@@ -5,17 +5,21 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  useWindowDimensions,
+  Image,
 } from 'react-native';
 import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import Categories from '../components/Categories';
+
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {StateContext} from '../context/context';
 
 const MedCategories = () => {
-  const {medCategories, loading} = useContext(StateContext);
+  const {medCategories, isMedCategoriesLoading} = useContext(StateContext);
 
   const navigation = useNavigation();
+  const {width} = useWindowDimensions();
+  const half = width / 2 - 15;
 
   return (
     <SafeAreaView
@@ -60,7 +64,9 @@ const MedCategories = () => {
             marginBottom: 60,
           }}
           showsVerticalScrollIndicator={false}>
-          {loading && <ActivityIndicator size="large" color="#6BA22C" />}
+          {isMedCategoriesLoading && (
+            <ActivityIndicator size="large" color="#6BA22C" />
+          )}
           <View
             style={{
               marginTop: 5,
@@ -71,8 +77,28 @@ const MedCategories = () => {
               flexDirection: 'row',
               flexWrap: 'wrap',
             }}>
-            {medCategories?.map(category => (
-              <Categories item={category} key={category?._id} />
+            {medCategories?.data?.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  navigation.navigate('ProductByMedCategory', {data: item})
+                }
+                style={{
+                  width: half,
+                  height: 120,
+                  margin: 5,
+                  elevation: 5, // This adds the shadow
+                  shadowColor: '#000000', // This controls the shadow color
+                  shadowOpacity: 0.8,
+                  shadowRadius: 10,
+                  shadowOffset: {width: 0, height: 5},
+                }}>
+                <Image
+                  resizeMode="contain"
+                  source={{uri: item?.url}}
+                  style={{width: '100%', height: '100%', borderRadius: 12}}
+                />
+              </TouchableOpacity>
             ))}
           </View>
         </ScrollView>

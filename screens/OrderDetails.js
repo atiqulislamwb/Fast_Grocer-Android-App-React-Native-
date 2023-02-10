@@ -6,6 +6,8 @@ import {
   View,
   Image,
   TextInput,
+  ToastAndroid,
+  Alert,
 } from 'react-native';
 import moment from 'moment';
 import React, {useState} from 'react';
@@ -14,12 +16,37 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ScrollView} from 'react-native-gesture-handler';
 import DeliveryProduct from '../components/DeliveryProduct';
+import useOrder from '../hooks/useOrder';
 const OrderDetails = ({route, navigation}) => {
   const [cancelText, setCancelText] = useState();
+  const {refetch} = useOrder();
   const {data} = route.params;
   const deliveryTime = data?.deliveryTime
     ? moment(data?.deliveryTime).format('MMMM Do YYYY, h:mm:ss a')
     : null;
+
+  const handleCanReq = id => {
+    if (data?.deliver === true) {
+      Alert.alert("Product Delivered and We don't accept any cancel request");
+      return;
+    }
+    const cancel = 'Cancel Request Sent';
+    fetch(`https://fg-server.vercel.app/cancel-order/${id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({cancel}),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data?.status === true) {
+          ToastAndroid.show('Cancel Request Sent', ToastAndroid.SHORT);
+          setCancelText('');
+          refetch();
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -255,19 +282,21 @@ const OrderDetails = ({route, navigation}) => {
             margin: 5,
             padding: 5,
           }}>
-          <TextInput
-            multiline={true}
-            style={{
-              backgroundColor: '#F8F9FD',
-              width: '100%',
-              borderRadius: 5,
-              height: 100,
-              padding: 2,
-            }}
-            placeholder="Please tell us why you cancel order ? Thank you!"
-            onChangeText={cancelText => setCancelText(cancelText)}
-            value={cancelText}
-          />
+          {data?.cancel === '' && (
+            <TextInput
+              multiline={true}
+              style={{
+                backgroundColor: '#F8F9FD',
+                width: '100%',
+                borderRadius: 5,
+                height: 100,
+                padding: 2,
+              }}
+              placeholder="Please tell us why you cancel order ? Thank you!"
+              onChangeText={cancelText => setCancelText(cancelText)}
+              value={cancelText}
+            />
+          )}
         </View>
         <View
           style={{
@@ -277,27 +306,44 @@ const OrderDetails = ({route, navigation}) => {
             marginTop: 15,
             marginBottom: 50,
           }}>
-          <TouchableOpacity
-            disabled={cancelText === ''}
-            style={{
-              width: '45%',
-              borderRadius: 5,
-              borderColor: '#E2E8F0',
-              ...styles.row,
-              borderWidth: 1,
-              paddingVertical: 15,
-              paddingHorizontal: 15,
-              backgroundColor: cancelText === '' ? '#ffff' : '#DC2626',
-            }}>
-            <Text
+          {data?.cancel && (
+            <View>
+              <Text
+                style={{
+                  color: '#DC2626',
+                  fontWeight: 'bold',
+                  fontSize: 14,
+                }}>
+                {data?.cancel}
+              </Text>
+            </View>
+          )}
+          {!data?.cancel && (
+            <TouchableOpacity
+              onPress={() => handleCanReq(data?._id)}
+              disabled={cancelText === ''}
               style={{
-                color: cancelText === '' ? '#000' : '#fff',
-                fontWeight: 'bold',
-                fontSize: 16,
+                width: '45%',
+                borderRadius: 5,
+                borderColor: '#E2E8F0',
+                ...styles.row,
+                borderWidth: 1,
+                paddingVertical: 15,
+                paddingHorizontal: 15,
+                backgroundColor: cancelText === '' ? '#ffff' : '#DC2626',
               }}>
-              Cancel Order
-            </Text>
-          </TouchableOpacity>
+              {data?.cancel === '' && (
+                <Text
+                  style={{
+                    color: cancelText === '' ? '#000' : '#fff',
+                    fontWeight: 'bold',
+                    fontSize: 16,
+                  }}>
+                  Cancel Order
+                </Text>
+              )}
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             style={{
               width: '45%',

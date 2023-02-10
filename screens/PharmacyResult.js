@@ -8,32 +8,24 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import ProductItem from '../components/ProductItem';
+
 import ProductItemRow from '../components/ProductItemRow';
 import {useNavigation} from '@react-navigation/native';
+import {useQuery} from '@tanstack/react-query';
 const PharmacyResult = () => {
   const [searchText, setSearchText] = useState('');
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      const response = await fetch(
-        `https://fgrocer.vercel.app/med-search?q=${searchText}`,
-      );
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-    }
-    fetchData();
-  }, [searchText]);
 
-  console.log(data);
+  const {data, isLoading, isError, error} = useQuery({
+    queryKey: ['med-search', searchText],
+    queryFn: () =>
+      fetch(`https://fgrocer.vercel.app/med-search?q=${searchText}`).then(res =>
+        res.json(),
+      ),
+    keepPreviousData: true,
+  });
 
   return (
     <SafeAreaView>
@@ -77,13 +69,9 @@ const PharmacyResult = () => {
             <TextInput
               style={{
                 height: 50,
-
                 borderBottomWidth: 0,
                 borderColor: 'transparent',
-
                 borderWidth: 1,
-                placeholderTextColor: 'black',
-                placeholderTextSize: 16,
                 width: 260,
               }}
               placeholder="Search Medicine Products"
@@ -95,7 +83,7 @@ const PharmacyResult = () => {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={true}>
-        {loading ? (
+        {isLoading ? (
           <ActivityIndicator size="large" color="#6BA22C" />
         ) : (
           <>

@@ -12,11 +12,13 @@ import {useNavigation} from '@react-navigation/native';
 import MedCategory from './MedCategory';
 
 const MedCategories = () => {
-  const {medCategories, loading} = useContext(StateContext);
+  const {medCategories, isMedCategoriesLoading} = useContext(StateContext);
   const navigation = useNavigation();
   return (
     <View>
-      {loading && <ActivityIndicator size="large" color="#6BA22C" />}
+      {isMedCategoriesLoading && (
+        <ActivityIndicator size="large" color="#6BA22C" />
+      )}
       <View
         style={{
           marginTop: 10,
@@ -27,7 +29,7 @@ const MedCategories = () => {
           flexDirection: 'row',
           flexWrap: 'wrap',
         }}>
-        {medCategories?.slice(0, 4).map(category => (
+        {medCategories?.data?.slice(0, 4).map(category => (
           <MedCategory item={category} key={category?._id} />
         ))}
       </View>

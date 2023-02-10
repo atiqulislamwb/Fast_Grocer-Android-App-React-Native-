@@ -13,25 +13,19 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import ProductItemRow from '../components/ProductItemRow';
 import {useNavigation} from '@react-navigation/native';
+import {useQuery} from '@tanstack/react-query';
 const GroceryResult = () => {
   const [searchText, setSearchText] = useState('');
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      const response = await fetch(
-        `https://fgrocer.vercel.app/grocery-search?q=${searchText}`,
-      );
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-    }
-    fetchData();
-  }, [searchText]);
 
-  console.log(data);
+  const {data, isLoading, isError, error} = useQuery({
+    queryKey: ['grocery-search', searchText],
+    queryFn: () =>
+      fetch(`https://fgrocer.vercel.app/grocery-search?q=${searchText}`).then(
+        res => res.json(),
+      ),
+    keepPreviousData: true,
+  });
 
   return (
     <SafeAreaView>
@@ -91,7 +85,7 @@ const GroceryResult = () => {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={true}>
-        {loading ? (
+        {isLoading ? (
           <ActivityIndicator size="large" color="#6BA22C" />
         ) : (
           <>

@@ -72,7 +72,7 @@ const ProductDetails = ({route, navigation}) => {
           <Image
             style={{width: '100%', height: '100%'}}
             resizeMode="contain"
-            source={{uri: data?.imageUrl}}
+            source={{uri: data?.imageUrl || data?.productImage}}
           />
         </View>
 

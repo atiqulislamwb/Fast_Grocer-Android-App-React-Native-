@@ -11,7 +11,6 @@ export const ContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
 
   // const [products, setProducts] = useState([]);
-  const [medCategories, setMedCategories] = useState([]);
   const [medProducts, setMedProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -32,6 +31,7 @@ export const ContextProvider = ({children}) => {
     queryKey: ['products'],
     queryFn: () =>
       fetch(`https://fgrocer.vercel.app/products`).then(res => res.json()),
+    keepPreviousData: true,
   });
 
   const {
@@ -43,21 +43,22 @@ export const ContextProvider = ({children}) => {
     queryKey: ['med-products'],
     queryFn: () =>
       fetch(`https://fgrocer.vercel.app/med-products`).then(res => res.json()),
+    keepPreviousData: true,
   });
 
-  useEffect(() => {
-    setLoading(true);
-    fetch('https://fgrocer.vercel.app/med-categories')
-      .then(response => response.json())
-      .then(json => {
-        if (json.status === true) {
-          setMedCategories(json?.data);
-          setLoading(false);
-        } else {
-        }
-      })
-      .catch(error => console.error(error));
-  }, []);
+  const {
+    data: medCategories,
+    isLoading: isMedCategoriesLoading,
+    isError: isMedCategoriesError,
+    error: medCategoryError,
+  } = useQuery({
+    queryKey: ['med-categories'],
+    queryFn: () =>
+      fetch(`https://fgrocer.vercel.app/med-categories`).then(res =>
+        res.json(),
+      ),
+    keepPreviousData: true,
+  });
 
   const addItemToCart = async product => {
     try {
@@ -163,6 +164,8 @@ export const ContextProvider = ({children}) => {
         MedProducts,
         isMedLoading,
         medCategories,
+
+        isMedCategoriesLoading,
         medProducts,
         cartItems,
         addItemToCart,
