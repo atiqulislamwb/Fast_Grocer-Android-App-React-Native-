@@ -15,45 +15,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Entypo from 'react-native-vector-icons/Entypo';
 import ProductItem from '../components/ProductItem';
 import CartButton from '../components/CartButton';
+import CommonHeader from '../components/CommonHeader';
 
 const ProductDetails = ({route, navigation}) => {
   const {data} = route.params;
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 12,
-          height: 70,
-          backgroundColor: '#F1F5F9',
-          shadowColor: '#000000',
-          shadowOffset: {width: 0, height: 5},
-          shadowRadius: 2,
-          borderBottomColor: '#CBD5E1',
-          borderBottomWidth: 1,
-        }}>
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <AntDesign name="arrowleft" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 15,
-              color: '#000000',
-              marginLeft: 7,
-            }}>
-            Product Details{' '}
-          </Text>
-        </View>
-      </View>
+      <CommonHeader title="Product Details" />
       <ScrollView style={{padding: 5}} showsVerticalScrollIndicator={false}>
         <Text
           style={{

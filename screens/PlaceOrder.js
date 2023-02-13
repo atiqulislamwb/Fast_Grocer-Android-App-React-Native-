@@ -19,6 +19,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '../hooks/useAuth';
+import CommonHeader from '../components/CommonHeader';
 const CART_STORAGE_KEY = 'CART_ITEMS';
 const PlaceOrder = () => {
   const {totalPrice, totalQuantity} = useContext(StateContext);
@@ -121,36 +122,7 @@ const PlaceOrder = () => {
         flex: 1,
         backgroundColor: '#fff',
       }}>
-      <View
-        style={{
-          width: '100%',
-          height: 55,
-          padding: 10,
-          backgroundColor: '#F8FAFC',
-          borderBottomColor: '#E2E8F0',
-          borderBottomWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: 3,
-            flexDirection: 'row',
-            marginLeft: 6,
-          }}>
-          <AntDesign name="arrowleft" size={35} color="#000" />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#000',
-              marginLeft: 12,
-            }}>
-            Confirm Your Order
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <CommonHeader title="Confirm Your Order" />
 
       <ScrollView
         style={{flex: 1, marginBottom: 80}}

@@ -16,6 +16,7 @@ import Loader from '../components/Loader';
 import {StateContext} from '../context/context';
 import useAuth from './../hooks/useAuth';
 import {useQuery} from '@tanstack/react-query';
+import CommonHeader from '../components/CommonHeader';
 
 const Favorites = ({navigation}) => {
   const {user} = useAuth();
@@ -56,49 +57,22 @@ const Favorites = ({navigation}) => {
       })
       .catch(err => console.log(err));
   };
-  if (isLoading)
-    return (
-      <View
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Loader />
-      </View>
-    );
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-      <View
-        style={{
-          width: '100%',
-          height: 55,
-          padding: 10,
-          backgroundColor: '#F8FAFC',
-          borderBottomColor: '#E2E8F0',
-          borderBottomWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
+      <CommonHeader title="Favorites" />
+      {isLoading && (
+        <View
           style={{
             display: 'flex',
+            flex: 1,
+            flexDirection: 'column',
             alignItems: 'center',
-            marginTop: 3,
-            flexDirection: 'row',
-            marginLeft: 6,
+            justifyContent: 'center',
           }}>
-          <AntDesign name="arrowleft" size={35} color="#000" />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#000',
-              marginLeft: 12,
-            }}>
-            Favorite
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <Loader />
+        </View>
+      )}
       <ScrollView style={{padding: 4}} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           {data?.data.map((item, index) => (

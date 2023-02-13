@@ -17,6 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ScrollView} from 'react-native-gesture-handler';
 import DeliveryProduct from '../components/DeliveryProduct';
 import useOrder from '../hooks/useOrder';
+import CommonHeader from '../components/CommonHeader';
 const OrderDetails = ({route, navigation}) => {
   const [cancelText, setCancelText] = useState();
   const {refetch} = useOrder();
@@ -54,25 +55,7 @@ const OrderDetails = ({route, navigation}) => {
         flex: 1,
         backgroundColor: '#FFFFFF',
       }}>
-      <View
-        style={{
-          width: '100%',
-          height: 55,
-          borderBottomColor: '#EDF2F6',
-          borderBottomWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: 3,
-            flexDirection: 'row',
-            marginLeft: 6,
-          }}>
-          <AntDesign name="arrowleft" size={32} color="#000" />
-        </TouchableOpacity>
-      </View>
+      <CommonHeader title="Your Order Details" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{

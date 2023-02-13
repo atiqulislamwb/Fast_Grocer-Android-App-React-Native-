@@ -9,38 +9,12 @@ import {
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
+import CommonHeader from '../components/CommonHeader';
 const AllStores = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-      <View
-        style={{
-          width: '100%',
-          height: 55,
-          borderBottomColor: '#EDF2F6',
-          borderBottomWidth: 2,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: 8,
-            flexDirection: 'row',
-            marginLeft: 6,
-          }}>
-          <AntDesign name="arrowleft" size={32} color="#000" />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#000',
-              marginLeft: 12,
-            }}>
-            Stores
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <CommonHeader title="Stores" />
       <View
         style={{
           padding: 14,

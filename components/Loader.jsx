@@ -9,6 +9,8 @@ const Loader = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
+        marginTop: 90,
+        flex: 1,
       }}>
       <View
         style={{

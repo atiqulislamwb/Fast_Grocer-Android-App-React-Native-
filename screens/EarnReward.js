@@ -1,11 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import CommonHeader from '../components/CommonHeader';
 
 const EarnReward = () => {
   return (
-    <View>
-      <Text>EarnReward</Text>
-    </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+      <CommonHeader title="Referral Program" />
+    </SafeAreaView>
   );
 };
 

@@ -11,6 +11,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
+import CommonHeader from '../components/CommonHeader';
 
 const uri1 = 'https://i.ibb.co/PQkCH2J/cooking.webp';
 const uri2 = 'https://i.ibb.co/strvQwQ/all-meds.webp';
@@ -21,38 +22,7 @@ const Search = () => {
 
   return (
     <SafeAreaView>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 12,
-          height: 70,
-          backgroundColor: '#F1F5F9',
-          shadowColor: '#000000',
-          shadowOffset: {width: 0, height: 5},
-          shadowRadius: 2,
-        }}>
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <AntDesign name="arrowleft" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: 'black',
-              marginLeft: 9,
-            }}>
-            Search
-          </Text>
-        </View>
-      </View>
+      <CommonHeader title="Search" />
 
       <TouchableOpacity
         style={{

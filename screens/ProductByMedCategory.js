@@ -3,12 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from '../context/context';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import React from 'react';
+
 import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
@@ -28,36 +26,7 @@ const ProductByMedCategory = ({route, navigation}) => {
         backgroundColor: '#fff',
         flex: 1,
       }}>
-      <View
-        style={{
-          width: '100%',
-          height: 60,
-          padding: 10,
-          backgroundColor: '#F8FAFC',
-          borderBottomColor: '#E2E8F0',
-          borderBottomWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: 3,
-            flexDirection: 'row',
-            marginLeft: 6,
-          }}>
-          <AntDesign name="arrowleft" size={35} color="#000" />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#000',
-              marginLeft: 12,
-            }}>
-            {data?.name}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <CommonHeader title={data?.name} />
 
       <View>
         <ScrollView

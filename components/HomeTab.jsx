@@ -137,7 +137,7 @@ const HomeTab = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View className="tab-content">
+      <View>
         {activeTab === 'tab1' && (
           <View>
             <Grocery />

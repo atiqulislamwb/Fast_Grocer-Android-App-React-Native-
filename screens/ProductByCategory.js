@@ -13,6 +13,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
 import useAllProduct from '../hooks/useAllProduct';
+import CommonHeader from '../components/CommonHeader';
 
 const ProductByCategory = ({route, navigation}) => {
   const {data} = route.params;
@@ -28,36 +29,7 @@ const ProductByCategory = ({route, navigation}) => {
         backgroundColor: '#fff',
         flex: 1,
       }}>
-      <View
-        style={{
-          width: '100%',
-          height: 60,
-          padding: 10,
-          backgroundColor: '#F8FAFC',
-          borderBottomColor: '#E2E8F0',
-          borderBottomWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: 3,
-            flexDirection: 'row',
-            marginLeft: 6,
-          }}>
-          <AntDesign name="arrowleft" size={35} color="#000" />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: '#000',
-              marginLeft: 12,
-            }}>
-            {data?.name}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <CommonHeader title={data?.name} />
 
       <View>
         <ScrollView

@@ -15,17 +15,6 @@ const Tab = createBottomTabNavigator();
 
 const TabView = () => {
   const navigation = useNavigation();
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener('tabPress', e => {
-      // Prevent default behavior
-      e.preventDefault();
-
-      // Do something manually
-      // ...
-    });
-
-    return unsubscribe;
-  }, [navigation]);
 
   return (
     <Tab.Navigator

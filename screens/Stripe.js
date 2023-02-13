@@ -19,6 +19,7 @@ import {
   useConfirmPayment,
   loading,
 } from '@stripe/stripe-react-native';
+import CommonHeader from '../components/CommonHeader';
 const pk_test =
   'pk_test_51M6RZkBTug5LZU4zCk5W0QrAY49XMvfelTEHbrn78yqa2CdZeGxYBI306Oo2ZbcdKwsykWHnvcayykkCp1GwnDON000h0oFDBQ';
 
@@ -31,36 +32,7 @@ const Stripe = ({navigation, route}) => {
       publishableKey={pk_test}
       merchantIdentifier="merchant.identifier">
       <SafeAreaView>
-        <View
-          style={{
-            width: '100%',
-            height: 55,
-            padding: 10,
-            backgroundColor: '#F8FAFC',
-            borderBottomColor: '#E2E8F0',
-            borderBottomWidth: 1,
-          }}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: 3,
-              flexDirection: 'row',
-              marginLeft: 6,
-            }}>
-            <AntDesign name="arrowleft" size={35} color="#000" />
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: '#000',
-                marginLeft: 12,
-              }}>
-              Payment with Card
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <CommonHeader title="Payment With Card" />
         <View
           style={{
             display: 'flex',
@@ -70,7 +42,7 @@ const Stripe = ({navigation, route}) => {
           <Text
             style={{
               fontSize: 16,
-              fontWeight: 'bold',
+              fontWeight: '700',
               color: '#000',
             }}>
             Please pay ৳{data?.total_price}
