@@ -6,15 +6,17 @@ export const fastGrocerApi = createApi({
     baseUrl: 'https://fgrocer.vercel.app',
   }),
 
-  endpoints: builder => ({
-    getAllGroceryProducts: builder.query({query: () => '/products'}),
-    getAllMedProducts: builder.query({query: () => '/med-products'}),
-    getAllOfferProducts: builder.query({query: () => '/offer-products'}),
+  endpoints: build => ({
+    getAllGroceryProducts: build.query({
+      query: () => `/products`,
+    }),
+    getAllMedProducts: build.query({query: () => '/med-products'}),
+    getAllOfferProducts: build.query({query: () => '/offer-products'}),
   }),
 });
 
 export const {
-  useGetAllGroceryProducts,
-  useGetAllMedProducts,
-  useGetAllOfferProducts,
+  useGetAllGroceryProductsQuery,
+  useGetAllMedProductsQuery,
+  useGetAllOfferProductsQuery,
 } = fastGrocerApi;

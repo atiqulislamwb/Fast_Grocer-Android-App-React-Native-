@@ -25,9 +25,9 @@ import ProductDetails from './screens/ProductDetails';
 
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 const queryClient = new QueryClient();
-// import {store} from './redux/store';
+import {store} from './redux/store';
 const Stack = createStackNavigator();
-// import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 import ProductByMedCategory from './screens/ProductByMedCategory';
 import PlaceOrder from './screens/PlaceOrder';
 import Stripe from './screens/Stripe';
@@ -47,61 +47,63 @@ import OrderDetails from './screens/OrderDetails';
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ContextProvider>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{headerShown: false}}
-            initialRouteName="TabView">
-            <Stack.Screen name="TabView" component={TabView} />
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Details" component={Details} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="EggClub" component={EggClub} />
-            <Stack.Screen name="AllStores" component={AllStores} />
-            <Stack.Screen name="Categories" component={Categories} />
-            <Stack.Screen name="MedCategories" component={MedCategories} />
-            <Stack.Screen
-              name="ProductByCategory"
-              component={ProductByCategory}
-            />
-            <Stack.Screen
-              name="ProductByMedCategory"
-              component={ProductByMedCategory}
-            />
-            <Stack.Screen name="ProductDetails" component={ProductDetails} />
-            <Stack.Screen name="Offers" component={Offers} />
-            <Stack.Screen name="DailyDeals" component={DailyDeals} />
-            <Stack.Screen name="Help" component={Help} />
-            <Stack.Screen name="Support" component={Support} />
-            <Stack.Screen name="Chat" component={Chat} />
-            <Stack.Screen name="Coupons" component={Coupons} />
-            <Stack.Screen name="Favorites" component={Favorites} />
-            <Stack.Screen name="OrderHistory" component={OrderHistory} />
-            <Stack.Screen name="OrderDetails" component={OrderDetails} />
-            <Stack.Screen name="PaymentHistory" component={PaymentHistory} />
-            <Stack.Screen name="EarnReward" component={EarnReward} />
-            <Stack.Screen name="FileComplaint" component={FileComplaint} />
-            <Stack.Screen name="PharmacyResult" component={PharmacyResult} />
-            <Stack.Screen name="GroceryResult" component={GroceryResult} />
-            <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
-            {/* payment page */}
-            <Stack.Screen name="Stripe" component={Stripe} />
-            <Stack.Screen name="Bkash" component={Bkash} />
-            <Stack.Screen name="Nagad" component={Nagad} />
-            {/* user Account */}
-            <Stack.Screen name="Account" component={Account} />
-            <Stack.Screen
-              name="PersonalInformation"
-              component={PersonalInformation}
-            />
-            <Stack.Screen name="ManageAddress" component={ManageAddress} />
-            <Stack.Screen name="Settings" component={Settings} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </ContextProvider>
-    </QueryClientProvider>
+    <Provider store={store}>
+      <NavigationContainer>
+        <ContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <Stack.Navigator
+              screenOptions={{headerShown: false}}
+              initialRouteName="TabView">
+              <Stack.Screen name="TabView" component={TabView} />
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Details" component={Details} />
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="SignUp" component={SignUp} />
+              <Stack.Screen name="EggClub" component={EggClub} />
+              <Stack.Screen name="AllStores" component={AllStores} />
+              <Stack.Screen name="Categories" component={Categories} />
+              <Stack.Screen name="MedCategories" component={MedCategories} />
+              <Stack.Screen
+                name="ProductByCategory"
+                component={ProductByCategory}
+              />
+              <Stack.Screen
+                name="ProductByMedCategory"
+                component={ProductByMedCategory}
+              />
+              <Stack.Screen name="ProductDetails" component={ProductDetails} />
+              <Stack.Screen name="Offers" component={Offers} />
+              <Stack.Screen name="DailyDeals" component={DailyDeals} />
+              <Stack.Screen name="Help" component={Help} />
+              <Stack.Screen name="Support" component={Support} />
+              <Stack.Screen name="Chat" component={Chat} />
+              <Stack.Screen name="Coupons" component={Coupons} />
+              <Stack.Screen name="Favorites" component={Favorites} />
+              <Stack.Screen name="OrderHistory" component={OrderHistory} />
+              <Stack.Screen name="OrderDetails" component={OrderDetails} />
+              <Stack.Screen name="PaymentHistory" component={PaymentHistory} />
+              <Stack.Screen name="EarnReward" component={EarnReward} />
+              <Stack.Screen name="FileComplaint" component={FileComplaint} />
+              <Stack.Screen name="PharmacyResult" component={PharmacyResult} />
+              <Stack.Screen name="GroceryResult" component={GroceryResult} />
+              <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+              {/* payment page */}
+              <Stack.Screen name="Stripe" component={Stripe} />
+              <Stack.Screen name="Bkash" component={Bkash} />
+              <Stack.Screen name="Nagad" component={Nagad} />
+              {/* user Account */}
+              <Stack.Screen name="Account" component={Account} />
+              <Stack.Screen
+                name="PersonalInformation"
+                component={PersonalInformation}
+              />
+              <Stack.Screen name="ManageAddress" component={ManageAddress} />
+              <Stack.Screen name="Settings" component={Settings} />
+            </Stack.Navigator>
+          </QueryClientProvider>
+        </ContextProvider>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

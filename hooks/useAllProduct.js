@@ -1,12 +1,11 @@
-import {useQuery} from '@tanstack/react-query';
-
+import useSWR from 'swr';
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 const useAllProduct = () => {
-  const {data: AllProducts, isLoading} = useQuery({
-    queryKey: ['products'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/products`).then(res => res.json()),
-    keepPreviousData: true,
-  });
+  const {
+    data: AllProducts,
+    error,
+    isLoading,
+  } = useSWR(`https://fgrocer.vercel.app/products`, fetcher);
 
   return {AllProducts, isLoading};
 };

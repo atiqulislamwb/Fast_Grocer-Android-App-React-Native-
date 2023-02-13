@@ -48,7 +48,6 @@ const Oil = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
       <FlatList
         data={oil}
         keyExtractor={item => item._id}

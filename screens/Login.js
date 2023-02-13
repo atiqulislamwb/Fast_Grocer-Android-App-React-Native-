@@ -33,31 +33,11 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-
-  const {setUser, loading, setLoading} = useAuth();
+  const [loading, setLoading] = useState(false);
+  const {setUser} = useAuth();
 
   const provider = new GoogleAuthProvider();
   const handleLoginSubmit = () => {
-    // if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-    //   Alert.alert(' Please provide correct email address');
-    //   return;
-    // }
-    // if (!password) {
-    //   Alert.alert('Please enter password');
-    //   return;
-    // }
-
-    // if (!email) {
-    //   Alert.alert(' Please provide  email address');
-    //   return;
-    // }
-    // if (password?.length < 6) {
-    //   Alert.alert(' Password should be 6 characters');
-    //   return;
-    // }
-    // const role = 'user';
-
-    setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
@@ -71,10 +51,6 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error);
-      })
-      .finally(solve => {
-        console.log(solve);
-        setLoading(false);
       });
   };
 
@@ -99,7 +75,6 @@ const Login = () => {
       name: user?.displayName,
       email: user?.email,
     };
-    setLoading(true);
     fetch(`https://fgrocer.vercel.app/users/${user?.email}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},

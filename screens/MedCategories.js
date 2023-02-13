@@ -8,11 +8,11 @@ import {
   useWindowDimensions,
   Image,
 } from 'react-native';
-import React, {useContext} from 'react';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {StateContext} from '../context/context';
+
 import useMedCategories from '../hooks/useMedCategories';
 
 const MedCategories = () => {

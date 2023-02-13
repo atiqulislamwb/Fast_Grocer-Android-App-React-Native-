@@ -1,19 +1,12 @@
-import {useQuery} from '@tanstack/react-query';
-
+import useSWR from 'swr';
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 const useMedCategories = () => {
   const {
     data: medCategories,
+    error,
     isLoading: isMedCategoriesLoading,
-    isError: isMedCategoriesError,
-    error: medCategoryError,
-  } = useQuery({
-    queryKey: ['med-categories'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/med-categories`).then(res =>
-        res.json(),
-      ),
-    keepPreviousData: true,
-  });
+  } = useSWR(`https://fgrocer.vercel.app/med-categories`, fetcher);
+
   return {medCategories, isMedCategoriesLoading};
 };
 

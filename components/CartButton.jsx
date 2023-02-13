@@ -16,7 +16,7 @@ const CartButton = ({data}) => {
           width: 40,
           height: 40,
           borderRadius: 5,
-          backgroundColor: '#cacaca',
+          backgroundColor: '#F5FCE7',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

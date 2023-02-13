@@ -20,6 +20,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeTab from '../components/HomeTab';
 import DrawerContent from '../components/DrawerContent';
+import {useGetAllGroceryProducts} from '../redux/services/fastGrocerApi';
 const Home = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerAnim] = useState(new Animated.Value(0));

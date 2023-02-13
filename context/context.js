@@ -1,5 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
-import {useQuery} from '@tanstack/react-query';
+import React, {createContext, useEffect, useMemo, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ToastAndroid} from 'react-native';
 
@@ -9,9 +8,6 @@ export const StateContext = createContext();
 
 export const ContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
-
-  // const [products, setProducts] = useState([]);
-  const [medProducts, setMedProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -25,6 +21,9 @@ export const ContextProvider = ({children}) => {
       }
     };
     fetchCartItems();
+    return () => {
+      fetchCartItems();
+    };
   }, []);
 
   const addItemToCart = async product => {
@@ -126,7 +125,6 @@ export const ContextProvider = ({children}) => {
       value={{
         loading,
         setLoading,
-        medProducts,
         cartItems,
         addItemToCart,
         removeItemFromCart,
@@ -139,30 +137,3 @@ export const ContextProvider = ({children}) => {
     </StateContext.Provider>
   );
 };
-
-// useEffect(() => {
-//   setLoading(true);
-//   fetch('https://fgrocer.vercel.app/products')
-//     .then(response => response.json())
-//     .then(json => {
-//       if (json.status === true) {
-//         setProducts(json?.data);
-//         setLoading(false);
-//       } else {
-//       }
-//     })
-//     .catch(error => console.error(error));
-// }, []);
-// useEffect(() => {
-//   setLoading(true);
-//   fetch('https://fgrocer.vercel.app/med-products')
-//     .then(response => response.json())
-//     .then(json => {
-//       if (json.status === true) {
-//         setMedProducts(json?.data);
-//         setLoading(false);
-//       } else {
-//       }
-//     })
-//     .catch(error => console.error(error));
-// }, []);

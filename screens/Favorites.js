@@ -58,7 +58,12 @@ const Favorites = ({navigation}) => {
   };
   if (isLoading)
     return (
-      <View style={styles.loader}>
+      <View
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         <Loader />
       </View>
     );
@@ -206,13 +211,7 @@ const styles = StyleSheet.create({
     padding: 2,
     flexDirection: 'row',
   },
-  loader: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
+
   wrapper: {
     display: 'flex',
     flexWrap: 'wrap',
