@@ -48,7 +48,7 @@ const Cart = () => {
             }}>
             <Text
               style={{
-                marginTop: 30,
+                marginTop: 100,
                 color: '#EF4444',
                 fontSize: 30,
                 fontWeight: 'bold',
@@ -58,12 +58,11 @@ const Cart = () => {
             <View
               style={{
                 width: '100%',
-                height: 150,
-                marginTop: 10,
+                height: 200,
               }}>
               <Image
                 source={{
-                  uri: 'https://www.pngmart.com/files/19/Sad-Emoji-PNG-File.png',
+                  uri: 'https://i.ibb.co/njL4VMZ/Screenshot-2023-02-13-120328-removebg-preview.png',
                 }}
                 resizeMode="contain"
                 style={{

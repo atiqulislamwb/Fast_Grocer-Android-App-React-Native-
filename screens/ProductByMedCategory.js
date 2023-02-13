@@ -11,6 +11,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
 import useAllMed from './../hooks/useAllMed';
+import CommonHeader from '../components/CommonHeader';
 
 const ProductByMedCategory = ({route, navigation}) => {
   const {data} = route.params;
