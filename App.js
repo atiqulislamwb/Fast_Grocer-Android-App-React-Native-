@@ -47,7 +47,7 @@ import OrderDetails from './screens/OrderDetails';
 
 const App = () => {
   return (
-    <SWRConfig value={{dedupingInterval: 10000}}>
+    <SWRConfig value={{dedupingInterval: 100000}}>
       <Provider store={store}>
         <NavigationContainer>
           <ContextProvider>

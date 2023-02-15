@@ -12,7 +12,7 @@ import {
 import React, {useState} from 'react';
 import CommonHeader from '../components/CommonHeader';
 import LinearGradient from 'react-native-linear-gradient';
-import Timer from '../components/Timer';
+
 import previousDeals from './../constant/previousDeals.js';
 import Feather from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';

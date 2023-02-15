@@ -313,7 +313,10 @@ const OrderDetails = ({route, navigation}) => {
                 borderWidth: 1,
                 paddingVertical: 15,
                 paddingHorizontal: 15,
-                backgroundColor: cancelText === '' ? '#ffff' : '#DC2626',
+                backgroundColor:
+                  cancelText === '' || data?.deliver === true
+                    ? '#E1E7F0'
+                    : '#DC2626',
               }}>
               {data?.cancel === '' && (
                 <Text
@@ -334,7 +337,7 @@ const OrderDetails = ({route, navigation}) => {
               ...styles.row,
               paddingVertical: 15,
               paddingHorizontal: 15,
-              backgroundColor: '#79AB42',
+              backgroundColor: data?.deliver !== true ? '#E1E7F0' : '#79AB42',
             }}>
             <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 16}}>
               Write a Review

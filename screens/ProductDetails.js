@@ -108,6 +108,9 @@ const ProductDetails = ({route, navigation}) => {
             borderBottomWidth: 1,
           }}>
           <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('PlaceOrder', {data: [{...data}]})
+            }
             style={{
               backgroundColor: '#79AB42',
               paddingVertical: 11,

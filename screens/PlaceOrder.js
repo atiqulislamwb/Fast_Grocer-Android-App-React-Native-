@@ -19,6 +19,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 import useAuth from '../hooks/useAuth';
 import CommonHeader from '../components/CommonHeader';
+import PlaceOrderItem from '../components/PlaceOrderItem';
 
 const PlaceOrder = ({route, navigation}) => {
   const {data} = route.params;
@@ -111,7 +112,37 @@ const PlaceOrder = ({route, navigation}) => {
       <ScrollView
         style={{flex: 1, marginBottom: 80}}
         showsVerticalScrollIndicator={false}>
+        <View
+          style={{
+            padding: 5,
+          }}>
+          <View style={{borderWidth: 1, borderColor: '#E1E7EF'}}>
+            <PlaceOrderItem data={data} />
+            <View style={{padding: 15}}>
+              <View style={styles.subContainer}>
+                <Text style={styles.text}>Total Quantity </Text>
+                <Text style={styles.text}>{totalQuantity}</Text>
+              </View>
+              <View style={styles.subContainer}>
+                <Text style={styles.text}>SubTotal: </Text>
+                <Text style={styles.text}> ৳{totalPrice}</Text>
+              </View>
+              <View style={styles.subContainer}>
+                <Text style={styles.text}>Shipping Fee: </Text>
+                <Text style={styles.text}> ৳29</Text>
+              </View>
+              <View style={styles.subContainer}>
+                <Text style={styles.text}>Total : </Text>
+                <Text style={styles.text}> ৳{totalPrice + 29}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
         <View style={{marginTop: 15}}>
+          <View style={{padding: 5}}>
+            <Text style={styles.title}>Fill Your Information</Text>
+          </View>
           <View
             style={{
               display: 'flex',
@@ -249,7 +280,7 @@ const PlaceOrder = ({route, navigation}) => {
           style={{
             paddingVertical: 14,
             paddingHorizontal: 30,
-            backgroundColor: isChecked ? '#79AB42' : '#CBD5E1',
+            backgroundColor: isChecked ? '#966DF7' : '#CBD5E1',
             borderRadius: 7,
           }}
           disabled={
@@ -313,5 +344,23 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 10,
     marginTop: 15,
+  },
+  subContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 16,
+    color: '#000',
+    margin: 6,
+    fontWeight: 'bold',
+  },
+  text: {
+    color: '#000',
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 1,
   },
 });

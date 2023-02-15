@@ -78,9 +78,9 @@ const CouponCode = () => {
               paddingVertical: 13,
               paddingHorizontal: 20,
               marginLeft: 5,
-              borderRadius: 7,
+              borderRadius: 5,
             }}>
-            <Text style={{fontSize: 15, fontweight: 'bold', color: '#fff'}}>
+            <Text style={{fontSize: 15, fontWeight: '700', color: '#fff'}}>
               Apply
             </Text>
           </TouchableOpacity>

@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 const OrderItem = ({item}) => {
-  const orderDate = moment(item?.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+  const orderDate = moment(item?.createdAt).format('LLL');
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -86,11 +86,8 @@ const OrderItem = ({item}) => {
             </Text>
           </View>
           <View>
-            <Text style={{fontSize: 14, color: '#86B455', fontWeight: 'bold'}}>
-              {orderDate?.slice(0, 17)}
-            </Text>
-            <Text style={{fontSize: 14, color: '#86B455', fontWeight: 'bold'}}>
-              {orderDate?.slice(18, 30)}
+            <Text style={{fontSize: 13, color: '#3E2C65', fontWeight: 'bold'}}>
+              {orderDate}
             </Text>
           </View>
         </View>
