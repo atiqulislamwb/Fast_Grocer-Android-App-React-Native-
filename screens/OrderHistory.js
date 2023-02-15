@@ -115,7 +115,7 @@ const OrderHistory = () => {
               flexDirection: 'column',
               rowGap: 15,
             }}>
-            {cancel.map(item => (
+            {cancel?.map(item => (
               <OrderItem key={item?._id} item={item} />
             ))}
           </View>

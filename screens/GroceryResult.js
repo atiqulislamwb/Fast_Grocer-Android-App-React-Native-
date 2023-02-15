@@ -94,7 +94,13 @@ const GroceryResult = () => {
                 <Text>No Product Found</Text>
               </View>
             ) : (
-              <View style={{padding: 2, marginBottom: 100}}>
+              <View
+                style={{
+                  padding: 2,
+                  marginBottom: 100,
+                  backgroundColor: '#fff',
+                  flex: 1,
+                }}>
                 {data?.map(product => (
                   <ProductItemRow key={product._id} item={product} />
                 ))}
