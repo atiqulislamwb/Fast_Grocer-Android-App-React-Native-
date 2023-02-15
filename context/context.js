@@ -9,7 +9,6 @@ export const StateContext = createContext();
 export const ContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-
   useEffect(() => {
     // Fetch the cart items from storage on component mount
     const fetchCartItems = async () => {
@@ -25,7 +24,6 @@ export const ContextProvider = ({children}) => {
       fetchCartItems();
     };
   }, []);
-
   const addItemToCart = async product => {
     try {
       const isExist = cartItems?.find(p => p._id === product._id);
@@ -126,6 +124,7 @@ export const ContextProvider = ({children}) => {
         loading,
         setLoading,
         cartItems,
+        setCartItems,
         addItemToCart,
         removeItemFromCart,
         handleDecrement,

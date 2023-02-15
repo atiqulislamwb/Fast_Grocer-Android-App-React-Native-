@@ -91,7 +91,7 @@ const Cart = () => {
 
       {cartItems.length > 0 && (
         <TouchableOpacity
-          onPress={() => navigation.navigate('PlaceOrder')}
+          onPress={() => navigation.navigate('PlaceOrder', {data: cartItems})}
           style={{
             position: 'absolute',
             bottom: 2,

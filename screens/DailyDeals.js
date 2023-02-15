@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Timer from '../components/Timer';
 import previousDeals from './../constant/previousDeals.js';
 import Feather from 'react-native-vector-icons/Feather';
+import {useNavigation} from '@react-navigation/native';
 
 const Questions = ({question, answer}) => {
   const [expanded, setExpanded] = useState(false);
@@ -66,6 +67,7 @@ const ProgressBar = ({progress}) => {
 };
 
 const DailyDeals = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <CommonHeader title="Daily Deals" />
@@ -195,9 +197,12 @@ const DailyDeals = () => {
 
           <FlatList
             data={previousDeals}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item?._id}
             renderItem={({item}) => (
-              <View
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ProductDetails', {data: item})
+                }
                 style={{
                   width: 300,
                   height: 130,
@@ -259,7 +264,7 @@ const DailyDeals = () => {
                     </Text>
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             )}
             horizontal={true}
             showsHorizontalScrollIndicator={false}

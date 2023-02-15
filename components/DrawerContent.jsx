@@ -6,8 +6,10 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  IntentAndroid,
+  Platform,
 } from 'react-native';
-import React, {useContext} from 'react';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -15,13 +17,22 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {StateContext} from './../context/context';
+
 import useAuth from '../hooks/useAuth';
 
-const DrawerContent = ({toggleDrawer}) => {
+const DrawerContent = () => {
   const navigation = useNavigation();
   const {user} = useAuth();
+  const phoneNumber = '+8801937547204';
 
+  const handleCallPress = () => {
+    if (Platform.OS === 'android') {
+      IntentAndroid.startActivity({
+        action: IntentAndroid.ACTION_DIAL,
+        data: `tel:${phoneNumber}`,
+      });
+    }
+  };
   return (
     <SafeAreaView style={{flex: 1, height: '100%'}}>
       {/* <TouchableOpacity
@@ -381,7 +392,7 @@ const DrawerContent = ({toggleDrawer}) => {
         {/* Customer Support */}
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('Support')}
+          onPress={() => (onPress = {handleCallPress})}
           style={styles.wrapper}>
           <View style={styles.innerWrapper}>
             <View>

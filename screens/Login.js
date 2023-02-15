@@ -38,7 +38,7 @@ const Login = () => {
   const {setUser} = useAuth();
 
   const provider = new GoogleAuthProvider();
-  const handleLoginSubmit = () => {
+  const handleLoginSubmit = async () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
@@ -55,7 +55,7 @@ const Login = () => {
       });
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     signInWithPopup(auth, provider)
       .then(result => {
         setLoading(true);

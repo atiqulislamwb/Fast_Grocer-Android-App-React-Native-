@@ -1,6 +1,6 @@
 const previousDeals = [
   {
-    id: 1,
+    _id: 1,
     name: 'Cadbury Dairy Milk Silk Fruit & Nut Chocolate Bar (Free Cadbury Dairy Milk Chocolate 55 gm) 137 gm',
     description: '',
     price: 299,
@@ -16,7 +16,7 @@ const previousDeals = [
   },
 
   {
-    id: 2,
+    _id: 2,
     name: 'Cadbury Dairy Milk Silk Fruit & Nut Chocolate Bar (Free Cadbury Dairy Milk Chocolate 55 gm) 137 gm',
     description: '',
     price: 299,
@@ -31,7 +31,7 @@ const previousDeals = [
     stock: 1000,
   },
   {
-    id: 3,
+    _id: 3,
     name: 'Saffola Honey (Free Parachute Coconut Oil 100 ml) 500 gm',
     description: '',
     price: 399,
@@ -46,7 +46,7 @@ const previousDeals = [
     stock: 1000,
   },
   {
-    id: 4,
+    _id: 4,
     name: 'Orange Indian (± 50 gm) 1 kg',
     description: '',
     price: 199,
@@ -61,7 +61,7 @@ const previousDeals = [
     stock: 1000,
   },
   {
-    id: 5,
+    _id: 5,
     name: 'Hosen Mushroom Choice Whole Can 425 gm',
     description: '',
     price: 179,
@@ -76,7 +76,7 @@ const previousDeals = [
     stock: 1000,
   },
   {
-    id: 6,
+    _id: 6,
     name: 'Finis Ozol Liquid Floor Cleaner Lemon 500 ml (Buy 1 Get 1 Free) 2 pcs',
     description: '',
     price: 149,

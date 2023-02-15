@@ -11,21 +11,20 @@ import {
   ToastAndroid,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import {StateContext} from './../context/context';
-import {useNavigation} from '@react-navigation/native';
+
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import LinearGradient from 'react-native-linear-gradient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '../hooks/useAuth';
 import CommonHeader from '../components/CommonHeader';
-const CART_STORAGE_KEY = 'CART_ITEMS';
-const PlaceOrder = () => {
-  const {totalPrice, totalQuantity} = useContext(StateContext);
-  const {user} = useAuth();
 
-  const navigation = useNavigation();
+const PlaceOrder = ({route, navigation}) => {
+  const {data} = route.params;
+  const {totalPrice, totalQuantity} = useContext(StateContext);
+  const [isChecked, setIsChecked] = useState(false);
+
   const [contact, setContact] = useState({
     name: user?.displayName,
     email: user?.email,
@@ -34,9 +33,7 @@ const PlaceOrder = () => {
     flat: '',
     apartment: '',
   });
-
-  const [isChecked, setIsChecked] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const {user} = useAuth();
 
   const payData = {
     name: contact?.name,
@@ -45,7 +42,7 @@ const PlaceOrder = () => {
     address: contact?.address,
     flat: contact?.flat,
     apartment: contact?.apartment,
-    order_products: cartItems,
+    order_products: data,
     totalQuantity: totalQuantity,
     status: 'pending',
     condition: 'Card Payment',
@@ -62,7 +59,7 @@ const PlaceOrder = () => {
       !contact?.address ||
       !contact?.flat ||
       !contact?.apartment ||
-      !cartItems.length
+      !data.length
     ) {
       Alert.alert('Fill Up all Information');
       return;
@@ -74,7 +71,7 @@ const PlaceOrder = () => {
       address: contact?.address,
       flat: contact?.flat,
       apartment: contact?.apartment,
-      order_products: cartItems,
+      order_products: data,
       totalQuantity: totalQuantity,
       status: 'pending',
       condition: isChecked ? 'Cash On Delivery' : 'Card Payment',
@@ -102,19 +99,6 @@ const PlaceOrder = () => {
       })
       .catch(error => console.log(error));
   };
-
-  useEffect(() => {
-    // Fetch the cart items from storage on component mount
-    const fetchCartItems = async () => {
-      try {
-        const items = await AsyncStorage.getItem(CART_STORAGE_KEY);
-        setCartItems(JSON.parse(items) || []);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchCartItems();
-  }, []);
 
   return (
     <SafeAreaView
