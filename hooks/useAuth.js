@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ToastAndroid} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
 import app from '../firebase/auth.js';
@@ -17,6 +17,7 @@ const useAuth = () => {
       fetch(`https://fgrocer.vercel.app/users/${user?.email}`).then(res =>
         res.json(),
       ),
+    keepPreviousData: true,
   });
 
   const handleLogout = () => {

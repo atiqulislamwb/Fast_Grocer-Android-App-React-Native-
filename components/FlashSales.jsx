@@ -55,7 +55,7 @@ const FlashSales = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
+      {isLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={flashSalesProducts}
         keyExtractor={item => item._id}

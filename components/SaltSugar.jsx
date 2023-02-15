@@ -50,7 +50,7 @@ const SaltSugar = () => {
           </View>
         </TouchableOpacity>
       </View>
-
+      {isLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={SaltSugar}
         keyExtractor={item => item._id}

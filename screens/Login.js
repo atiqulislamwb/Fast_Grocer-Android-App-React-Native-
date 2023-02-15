@@ -25,7 +25,6 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 
-import {StateContext} from './../context/context';
 import useAuth from './../hooks/useAuth';
 import CommonHeader from '../components/CommonHeader.jsx';
 
@@ -34,8 +33,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  const [loading, setLoading] = useState(false);
-  const {setUser} = useAuth();
+  const {setUser, loading, setLoading} = useAuth();
 
   const provider = new GoogleAuthProvider();
   const handleLoginSubmit = async () => {

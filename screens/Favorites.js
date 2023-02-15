@@ -58,24 +58,29 @@ const Favorites = ({navigation}) => {
       .catch(err => console.log(err));
   };
 
+  if (isLoading) return <Loader />;
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <CommonHeader title="Favorites" />
-      {isLoading && (
-        <View
-          style={{
-            display: 'flex',
-            flex: 1,
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Loader />
-        </View>
-      )}
+
       <ScrollView style={{padding: 4}} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          {data?.data.map((item, index) => (
+          {data?.data?.length === 0 && (
+            <View style={{}}>
+              <Text
+                style={{
+                  color: '#6E62EB',
+                  fontSize: 20,
+                  marginTop: 100,
+                  textAlign: 'center',
+                  marginLeft: 130,
+                }}>
+                No Favorite Item
+              </Text>
+            </View>
+          )}
+          {data?.data?.map((item, index) => (
             <View key={index} style={styles.container}>
               <TouchableOpacity
                 onPress={() =>

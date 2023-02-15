@@ -49,7 +49,8 @@ const MedicalDevices = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isMedLoading && <ActivityIndicator size="large" color="#6BA22C" />}
+      {isMedLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
+
       <FlatList
         data={filterProducts}
         keyExtractor={item => item._id}

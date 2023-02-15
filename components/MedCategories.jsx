@@ -17,7 +17,7 @@ const MedCategories = () => {
   return (
     <View>
       {isMedCategoriesLoading && (
-        <ActivityIndicator size="large" color="#6BA22C" />
+        <ActivityIndicator size="large" color="#CBD5E1" />
       )}
       <View
         style={{

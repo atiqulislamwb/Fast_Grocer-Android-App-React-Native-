@@ -16,6 +16,7 @@ import Timer from '../components/Timer';
 import previousDeals from './../constant/previousDeals.js';
 import Feather from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
+import DailyDeal from '../components/DailyDeal';
 
 const Questions = ({question, answer}) => {
   const [expanded, setExpanded] = useState(false);
@@ -58,14 +59,6 @@ const Questions = ({question, answer}) => {
   );
 };
 
-const ProgressBar = ({progress}) => {
-  return (
-    <View style={styles.container}>
-      <View style={[styles.progressBar, {width: `${progress}%`}]} />
-    </View>
-  );
-};
-
 const DailyDeals = () => {
   const navigation = useNavigation();
   return (
@@ -82,108 +75,7 @@ const DailyDeals = () => {
           left: 0,
         }}></LinearGradient>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text style={styles.mainText}>Daily Deals</Text>
-          <Text style={styles.subText}>Order over ৳99 to activate </Text>
-          <Text style={styles.subText1}>*Limited Stock</Text>
-        </View>
-        <View style={{padding: 18}}>
-          <View
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: 15,
-              shadowColor: '#000000',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              elevation: 5,
-            }}>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-              }}>
-              <View style={{width: 100, height: 130}}>
-                <Image
-                  source={{
-                    uri: 'https://chaldn.com/_mpimage/cadbury-dairy-milk-silk-fruit-nut-chocolate-bar-free-cadbury-dairy-milk-chocolate-55-gm-137-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D127914&q=best&v=1&m=400&webp=1',
-                  }}
-                  style={{width: '100%', height: '100%'}}
-                  resizeMode="contain"
-                />
-              </View>
-              <View style={{width: '50%'}}>
-                <Text style={{fontSize: 13, color: '#000', fontWeight: 'bold'}}>
-                  Cadbury Dairy Milk Silk Fruit & Nut Chocolate..
-                </Text>
-                <Text style={{fontSize: 11, color: '#000'}}>230 gm</Text>
-                <View
-                  style={{
-                    marginTop: 20,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    columnGap: 5,
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 11, color: '#000'}}>at</Text>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      color: '#5CBBF9',
-                      fontWeight: 'bold',
-                    }}>
-                    ৳599
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: '#000',
-                      textDecorationLine: 'line-through',
-                    }}>
-                    ৳799
-                  </Text>
-                </View>
-              </View>
-              <View style={{marginTop: 10}}>
-                <View style={styles.percentage}>
-                  <Text
-                    style={{
-                      fontSize: 11,
-                      color: '#fff',
-                      fontWeight: 'bold',
-                    }}>
-                    14% Off
-                  </Text>
-                </View>
-                <View
-                  style={{...styles.percentage, backgroundColor: '#FF60A2'}}>
-                  <Text style={{fontSize: 12, color: '#fff'}}> Daily...</Text>
-                </View>
-              </View>
-            </View>
-            <View
-              style={{
-                backgroundColor: '#D5E6F8',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-              }}>
-              <View style={{padding: 8, width: '70%'}}>
-                <Text
-                  style={{marginBottom: 10, fontSize: 13, color: '#334155'}}>
-                  ৳69 from activating today's deal{' '}
-                </Text>
-                <ProgressBar progress={40} style={{marginTop: 5}} />
-              </View>
-              <View>
-                <Timer />
-              </View>
-            </View>
-          </View>
-        </View>
+        <DailyDeal />
         <View style={{padding: 8}}>
           <Text
             style={{

@@ -18,22 +18,12 @@ import CommonHeader from '../components/CommonHeader';
 const OrderHistory = () => {
   const {data, isLoading} = useOrder();
 
+  if (isLoading) return <Loader />;
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#F4F4F5'}}>
       <CommonHeader title="Your Order History" />
 
-      {isLoading && (
-        <View
-          style={{
-            display: 'flex',
-            flex: 1,
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Loader />
-        </View>
-      )}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{

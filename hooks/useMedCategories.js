@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import {useEffect} from 'react';
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 const useMedCategories = () => {
   const {

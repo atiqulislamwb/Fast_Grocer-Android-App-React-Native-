@@ -9,7 +9,7 @@ const Loader = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        marginTop: 90,
+
         flex: 1,
       }}>
       <View
@@ -22,11 +22,6 @@ const Loader = () => {
           height: 100,
           borderRadius: 20,
           backgroundColor: '#E5E7EB',
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
         }}>
         <ActivityIndicator size="large" color="#9CA3AF" />
       </View>

@@ -51,7 +51,7 @@ const Vitamin = () => {
           </View>
         </TouchableOpacity>
       </View>
-
+      {isMedLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={filterProducts}
         keyExtractor={item => item._id}

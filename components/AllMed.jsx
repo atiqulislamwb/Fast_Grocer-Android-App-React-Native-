@@ -48,7 +48,7 @@ const AllMed = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isMedLoading && <ActivityIndicator size="large" color="#6BA22C" />}
+      {isMedLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={medProducts}
         keyExtractor={item => item._id}

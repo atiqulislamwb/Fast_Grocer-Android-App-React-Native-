@@ -1,5 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
 import useAuth from './useAuth';
 import {useQuery} from '@tanstack/react-query';
 
@@ -11,11 +9,10 @@ const useOrder = () => {
       fetch(`https://fg-server.vercel.app/order/${user?.email}`).then(res =>
         res.json(),
       ),
+    keepPreviousData: true,
   });
 
   return {data, isLoading, isError, error, refetch};
 };
 
 export default useOrder;
-
-const styles = StyleSheet.create({});

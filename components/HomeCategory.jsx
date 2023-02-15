@@ -24,7 +24,7 @@ const HomeCategory = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
+      {isLoading && <ActivityIndicator size="large" color="#CAD4E0" />}
       <View
         style={{
           marginTop: 10,
