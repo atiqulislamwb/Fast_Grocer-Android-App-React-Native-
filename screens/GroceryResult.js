@@ -8,24 +8,17 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import ProductItemRow from '../components/ProductItemRow';
 import {useNavigation} from '@react-navigation/native';
-import {useQuery} from '@tanstack/react-query';
+
+import {useGetGrocerySearchResultsQuery} from '../redux/services/fastGrocerApi';
 const GroceryResult = () => {
   const [searchText, setSearchText] = useState('');
   const navigation = useNavigation();
-
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['grocery-search', searchText],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/grocery-search?q=${searchText}`).then(
-        res => res.json(),
-      ),
-    keepPreviousData: true,
-  });
+  const {data, isLoading} = useGetGrocerySearchResultsQuery(searchText);
 
   return (
     <SafeAreaView>
