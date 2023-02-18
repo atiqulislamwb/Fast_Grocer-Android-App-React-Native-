@@ -9,16 +9,14 @@ import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 import MedCategory from './MedCategory';
-import useMedCategories from '../hooks/useMedCategories';
+import {useGetMedCategoryQuery} from '../redux/services/fastGrocerApi';
 
 const MedCategories = () => {
-  const {medCategories, isMedCategoriesLoading} = useMedCategories();
+  const {data, isLoading} = useGetMedCategoryQuery();
   const navigation = useNavigation();
   return (
     <View>
-      {isMedCategoriesLoading && (
-        <ActivityIndicator size="large" color="#CBD5E1" />
-      )}
+      {isLoading && <ActivityIndicator size="large" color="#CBD5E1" />}
       <View
         style={{
           marginTop: 10,
@@ -29,7 +27,7 @@ const MedCategories = () => {
           flexDirection: 'row',
           flexWrap: 'wrap',
         }}>
-        {medCategories?.data?.slice(0, 4).map(category => (
+        {data?.data?.slice(0, 4).map(category => (
           <MedCategory item={category} key={category?._id} />
         ))}
       </View>

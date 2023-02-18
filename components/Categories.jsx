@@ -1,8 +1,6 @@
 import {
   StyleSheet,
-  Text,
   useWindowDimensions,
-  View,
   TouchableOpacity,
   Image,
 } from 'react-native';

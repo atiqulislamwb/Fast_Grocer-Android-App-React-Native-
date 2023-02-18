@@ -1,6 +1,6 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
-import Timer from './Timer';
+
 import {storyData} from '../constant/storyData';
 import Story from './Story';
 import Deal from './Deal';

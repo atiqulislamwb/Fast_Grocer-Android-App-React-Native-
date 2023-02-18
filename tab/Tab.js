@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Home from '../screens/Home';
@@ -11,11 +11,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Categories from '../screens/Categories';
 import {useNavigation} from '@react-navigation/native';
 import Search from './../screens/Search';
+import SplashScreen from 'react-native-splash-screen';
 const Tab = createBottomTabNavigator();
 
 const TabView = () => {
   const navigation = useNavigation();
-
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Tab.Navigator
       initialRouteName="Home"

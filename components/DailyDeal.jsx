@@ -37,8 +37,6 @@ const ProgressBar = ({progress}) => {
   );
 };
 const DailyDeal = () => {
-  //  const navigation = useNavigation()
-
   return (
     <View>
       <View>

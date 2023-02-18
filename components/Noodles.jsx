@@ -6,17 +6,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from './../context/context';
+import React from 'react';
+
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import useAllProduct from '../hooks/useAllProduct';
+
+import {useGetAllGroceryProductsQuery} from '../redux/services/fastGrocerApi';
 
 const Noodles = () => {
-  const {isLoading, AllProducts} = useAllProduct();
-  const noodles = AllProducts?.data?.filter(
-    product => product?.status === 'noodles',
-  );
+  const {data, isLoading} = useGetAllGroceryProductsQuery();
+  const noodles = data?.data?.filter(product => product?.status === 'noodles');
   return (
     <View
       style={{

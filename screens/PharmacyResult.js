@@ -13,20 +13,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import ProductItemRow from '../components/ProductItemRow';
 import {useNavigation} from '@react-navigation/native';
-import {useQuery} from '@tanstack/react-query';
+import {useGetMedSearchResultsQuery} from '../redux/services/fastGrocerApi';
 const PharmacyResult = () => {
   const [searchText, setSearchText] = useState('');
   const navigation = useNavigation();
 
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['med-search', searchText],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/med-search?q=${searchText}`).then(res =>
-        res.json(),
-      ),
-    keepPreviousData: true,
-  });
-
+  const {data, isLoading} = useGetMedSearchResultsQuery(searchText);
   return (
     <SafeAreaView>
       <View

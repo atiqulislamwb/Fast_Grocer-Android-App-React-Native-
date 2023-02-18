@@ -1,22 +1,17 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
 import React from 'react';
 
 import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
-import useAllMed from './../hooks/useAllMed';
-import CommonHeader from '../components/CommonHeader';
 
-const ProductByMedCategory = ({route, navigation}) => {
+import CommonHeader from '../components/CommonHeader';
+import {useGetAllMedProductsQuery} from '../redux/services/fastGrocerApi';
+
+const ProductByMedCategory = ({route}) => {
   const {data} = route.params;
 
-  const {MedProducts, isMedLoading} = useAllMed();
+  const {data: MedProducts, isLoading} = useGetAllMedProductsQuery();
   const filterProducts = MedProducts?.data?.filter(
     item => item?.category === data?.value,
   );
@@ -35,7 +30,7 @@ const ProductByMedCategory = ({route, navigation}) => {
             marginBottom: 60,
           }}
           showsVerticalScrollIndicator={false}>
-          {isMedLoading && <ActivityIndicator size="large" color="#6BA22C" />}
+          {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
           <View
             style={{
               marginTop: 5,

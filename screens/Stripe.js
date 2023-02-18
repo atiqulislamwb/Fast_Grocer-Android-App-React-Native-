@@ -1,6 +1,5 @@
 import {
   Alert,
-  Button,
   SafeAreaView,
   View,
   StyleSheet,
@@ -8,16 +7,12 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import React, {useState, useEffect, useContext} from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import React, {useState, useEffect} from 'react';
 
-import {StateContext} from '../context/context';
 import {
   CardField,
   StripeProvider,
-  useStripe,
   useConfirmPayment,
-  loading,
 } from '@stripe/stripe-react-native';
 import CommonHeader from '../components/CommonHeader';
 const pk_test =
@@ -26,7 +21,7 @@ const pk_test =
 const Stripe = ({navigation, route}) => {
   const {data} = route.params;
   const price = data?.total_price / 100;
-  console.log(data);
+
   return (
     <StripeProvider
       publishableKey={pk_test}

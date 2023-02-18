@@ -1,24 +1,17 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from '../context/context';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
+import React from 'react';
+
 import {ScrollView} from 'react-native-gesture-handler';
 
 import ProductItem from '../components/ProductItem';
-import useAllProduct from '../hooks/useAllProduct';
-import CommonHeader from '../components/CommonHeader';
 
-const ProductByCategory = ({route, navigation}) => {
+import CommonHeader from '../components/CommonHeader';
+import {useGetAllGroceryProductsQuery} from '../redux/services/fastGrocerApi';
+
+const ProductByCategory = ({route}) => {
   const {data} = route.params;
 
-  const {AllProducts, isLoading} = useAllProduct();
+  const {data: AllProducts, isLoading} = useGetAllGroceryProductsQuery();
   const filterProducts = AllProducts?.data?.filter(
     item => item?.category === data?.value,
   );

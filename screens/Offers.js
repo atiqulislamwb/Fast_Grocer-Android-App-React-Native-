@@ -10,14 +10,14 @@ import {
 import React, {useState} from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import useOfferProduct from '../hooks/useOfferProduct';
 import {useNavigation} from '@react-navigation/native';
 import useAuth from './../hooks/useAuth';
 import CartButton from './../components/CartButton';
 import Loader from './../components/Loader';
 import CommonHeader from '../components/CommonHeader';
+import {useGetAllOfferProductsQuery} from '../redux/services/fastGrocerApi';
 const Offers = () => {
-  const {OfferProducts, isLoading} = useOfferProduct();
+  const {data: OfferProducts, isLoading} = useGetAllOfferProductsQuery();
   const {user} = useAuth();
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState(false);

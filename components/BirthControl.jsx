@@ -6,15 +6,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from './../context/context';
+import React from 'react';
+
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import useAllMed from '../hooks/useAllMed';
+import {useGetAllMedProductsQuery} from '../redux/services/fastGrocerApi';
 
 const BirthControl = () => {
-  const {MedProducts, isMedLoading} = useAllMed();
-  const filterProducts = MedProducts?.data?.filter(
+  const {data, isLoading} = useGetAllMedProductsQuery();
+  const filterProducts = data?.data?.filter(
     item => item?.category === 'birth&control',
   );
   return (
@@ -50,7 +50,7 @@ const BirthControl = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isMedLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
+      {isLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={filterProducts}
         keyExtractor={item => item._id}

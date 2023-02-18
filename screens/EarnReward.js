@@ -7,9 +7,8 @@ import {
   Image,
   ScrollView,
   Alert,
-  LayoutAnimation,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 
 import CommonHeader from '../components/CommonHeader';
 import Questions from '../components/QuestionFaq';

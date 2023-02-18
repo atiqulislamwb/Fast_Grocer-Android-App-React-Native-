@@ -3,23 +3,18 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
-  TextInput,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
   Image,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import ProductItem from '../components/ProductItem';
+import React from 'react';
+
 import CartButton from '../components/CartButton';
 import CommonHeader from '../components/CommonHeader';
 
 const ProductDetails = ({route, navigation}) => {
   const {data} = route.params;
-
+  console.log('Product details');
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <CommonHeader title="Product Details" />

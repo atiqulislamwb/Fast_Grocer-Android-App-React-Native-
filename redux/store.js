@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query';
-import {fastGrocerApi} from './services/fastGrocerApi';
+import {fastGrocerApi} from './services/fastGrocerApi.js';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     [fastGrocerApi.reducerPath]: fastGrocerApi.reducer,
   },
@@ -10,3 +10,5 @@ export const store = configureStore({
     getDefaultMiddleware().concat(fastGrocerApi.middleware),
 });
 setupListeners(store.dispatch);
+
+export default store;

@@ -10,12 +10,13 @@ import React from 'react';
 
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import useAllMed from '../hooks/useAllMed';
+
+import {useGetAllMedProductsQuery} from '../redux/services/fastGrocerApi';
 
 const Vitamin = () => {
-  const {MedProducts, isMedLoading} = useAllMed();
+  const {data, isLoading} = useGetAllMedProductsQuery();
 
-  const filterProducts = MedProducts?.data?.filter(
+  const filterProducts = data?.data?.filter(
     item => item?.category === 'vitamins&supplements',
   );
   return (
@@ -51,7 +52,7 @@ const Vitamin = () => {
           </View>
         </TouchableOpacity>
       </View>
-      {isMedLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
+      {isLoading && <ActivityIndicator size="large" color="#E1E7EF" />}
       <FlatList
         data={filterProducts}
         keyExtractor={item => item._id}

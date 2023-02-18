@@ -4,23 +4,19 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  useWindowDimensions,
   View,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Categories from './Categories';
 import {useNavigation} from '@react-navigation/native';
-import {useQuery} from '@tanstack/react-query';
+
+import {useGetGroceryCategoryQuery} from '../redux/services/fastGrocerApi';
 
 const HomeCategory = () => {
   const navigation = useNavigation();
 
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['categories'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/categories`).then(res => res.json()),
-  });
+  const {data, isLoading} = useGetGroceryCategoryQuery();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

@@ -10,13 +10,13 @@ import {
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
-import useOfferProduct from '../hooks/useOfferProduct';
+import {useGetAllOfferProductsQuery} from '../redux/services/fastGrocerApi';
 
 const Offer = () => {
-  const {OfferProducts, isLoading} = useOfferProduct();
+  const {data, isLoading} = useGetAllOfferProductsQuery();
 
   const navigation = useNavigation();
-  const products = OfferProducts?.data;
+
   return (
     <View
       style={{
@@ -54,7 +54,7 @@ const Offer = () => {
       {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
       <View style={{padding: 2}}>
         <FlatList
-          data={products}
+          data={data?.data}
           keyExtractor={item => item._id}
           renderItem={({item}) => (
             <View style={styles.wrapper}>

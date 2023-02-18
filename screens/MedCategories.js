@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
@@ -11,13 +10,11 @@ import {
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
-
-import useMedCategories from '../hooks/useMedCategories';
 import CommonHeader from '../components/CommonHeader';
+import {useGetMedCategoryQuery} from '../redux/services/fastGrocerApi';
 
 const MedCategories = () => {
-  const {medCategories, isMedCategoriesLoading} = useMedCategories();
+  const {data, isLoading} = useGetMedCategoryQuery();
 
   const navigation = useNavigation();
   const {width} = useWindowDimensions();
@@ -37,9 +34,7 @@ const MedCategories = () => {
             marginBottom: 60,
           }}
           showsVerticalScrollIndicator={false}>
-          {isMedCategoriesLoading && (
-            <ActivityIndicator size="large" color="#6BA22C" />
-          )}
+          {isLoading && <ActivityIndicator size="large" color="#6BA22C" />}
           <View
             style={{
               marginTop: 5,
@@ -50,7 +45,7 @@ const MedCategories = () => {
               flexDirection: 'row',
               flexWrap: 'wrap',
             }}>
-            {medCategories?.data?.map((item, index) => (
+            {data?.data?.map((item, index) => (
               <TouchableOpacity
                 key={index}
                 onPress={() =>

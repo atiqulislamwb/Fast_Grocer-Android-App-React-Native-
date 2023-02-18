@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import React, {useContext} from 'react';
-import {StateContext} from '../context/context';
+import React from 'react';
 
 const PlaceOrderItem = ({data}) => {
   return (

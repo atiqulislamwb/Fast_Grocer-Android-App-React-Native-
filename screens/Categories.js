@@ -1,25 +1,12 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import Categories from '../components/Categories';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useQuery} from '@tanstack/react-query';
-import CommonHeader from '../components/CommonHeader';
-const AllCategories = () => {
-  const navigation = useNavigation();
+import {View, SafeAreaView, ScrollView, ActivityIndicator} from 'react-native';
+import React from 'react';
 
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['categories'],
-    queryFn: () =>
-      fetch(`https://fgrocer.vercel.app/categories`).then(res => res.json()),
-  });
+import Categories from '../components/Categories';
+
+import CommonHeader from '../components/CommonHeader';
+import {useGetGroceryCategoryQuery} from '../redux/services/fastGrocerApi';
+const AllCategories = () => {
+  const {data, isLoading} = useGetGroceryCategoryQuery();
 
   return (
     <SafeAreaView

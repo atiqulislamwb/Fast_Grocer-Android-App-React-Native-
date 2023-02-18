@@ -25,8 +25,7 @@ const Favorites = ({navigation}) => {
   const {
     data,
     isLoading,
-    isError,
-    error,
+
     refetch: wishlistRefetch,
   } = useQuery({
     queryKey: ['wishlist', user?.email],
@@ -171,6 +170,28 @@ const Favorites = ({navigation}) => {
           ))}
         </View>
       </ScrollView>
+      {data?.data?.length > 0 && (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 15,
+            right: 0,
+            left: 0,
+          }}>
+          <View style={{...styles.wrapper2, marginTop: 15}}>
+            <TouchableOpacity style={styles.shoppingButton}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                }}>
+                Add {data?.data?.length} items to bag
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -197,5 +218,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
+  },
+  wrapper2: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    padding: 2,
+    columnGap: 8,
+  },
+  shoppingButton: {
+    backgroundColor: '#79AB42',
+    paddingVertical: 13,
+    paddingHorizontal: 40,
+    borderRadius: 6,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 4,
   },
 });

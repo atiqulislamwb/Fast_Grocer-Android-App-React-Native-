@@ -10,11 +10,11 @@ import React from 'react';
 
 import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import useAllProduct from '../hooks/useAllProduct';
+import {useGetAllGroceryProductsQuery} from '../redux/services/fastGrocerApi';
 
 const SaltSugar = () => {
-  const {AllProducts, isLoading} = useAllProduct();
-  const SaltSugar = AllProducts?.data?.filter(
+  const {data, isLoading} = useGetAllGroceryProductsQuery();
+  const SaltSugar = data?.data?.filter(
     product => product?.status === 'salt&sugar',
   );
   return (

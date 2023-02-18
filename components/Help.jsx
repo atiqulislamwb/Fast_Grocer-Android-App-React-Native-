@@ -1,11 +1,12 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 const Help = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.help}>
       <View style={styles.container}>
@@ -18,7 +19,9 @@ const Help = () => {
           Need Help
         </Text>
         <View style={styles.wrapper}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Chat')}
+            style={styles.button}>
             <Ionicons
               name="chatbox-ellipses-outline"
               color="#6BA22C"
