@@ -13,11 +13,22 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import BalanceDetails from '../components/BalanceDetails.jsx';
 import TransactionAndRefund from '../components/TransactionAndRefund.jsx';
 import CommonHeader from '../components/CommonHeader.jsx';
+import useOrder from './../hooks/useOrder';
+import Loader from '../components/Loader.jsx';
 
 const PaymentHistory = () => {
+  const {data, isLoading, isError, error, refetch} = useOrder();
+  const deliveredOrder = data?.data?.filter(
+    item => item?.deliver === true && item.deliveryTime,
+  );
+  const totalPriceSpend = deliveredOrder?.reduce(
+    (acc, item) => acc + item?.total_price,
+    0,
+  );
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Your Payment History" />
+      {isLoading && <Loader />}
       <View
         style={{
           backgroundColor: '#EAB308',
@@ -44,10 +55,10 @@ const PaymentHistory = () => {
             }}>
             <View style={{padding: 3}}>
               <Text style={{fontSize: 13, color: '#000'}}>
-                Available Balance:
+                Total Spend Balance:
               </Text>
               <Text style={{fontSize: 25, color: '#000', fontWeight: 'bold'}}>
-                ৳0
+                ৳{totalPriceSpend}
               </Text>
             </View>
             <View style={{}}>
@@ -70,7 +81,7 @@ const PaymentHistory = () => {
             borderTopRightRadius: 15,
             marginTop: 4,
           }}>
-          <TransactionAndRefund />
+          <TransactionAndRefund order={deliveredOrder} />
         </View>
       </View>
     </SafeAreaView>

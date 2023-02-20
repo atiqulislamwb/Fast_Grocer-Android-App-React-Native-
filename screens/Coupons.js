@@ -4,7 +4,7 @@ import React from 'react';
 import CommonHeader from '../components/CommonHeader';
 const Coupons = () => {
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Coupons" />
       <View style={styles.container}>
         <View style={{width: '100%', height: 250}}>

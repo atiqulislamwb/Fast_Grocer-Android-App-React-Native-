@@ -28,7 +28,7 @@ const Deal = () => {
 
   const navigation = useNavigation();
   return (
-    <>
+    <View style={{width: '100%', paddingHorizontal: 4}}>
       <View
         style={{
           padding: 4,
@@ -131,7 +131,7 @@ const Deal = () => {
           </View>
         </View>
       </Modal>
-    </>
+    </View>
   );
 };
 
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
 
   modalContent: {
-    height: '50%',
+    height: '55%',
     width: '95%',
     backgroundColor: '#fff',
     borderRadius: 10,

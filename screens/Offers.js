@@ -92,7 +92,7 @@ const Offers = () => {
       </View>
     );
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Offers" />
 
       <ScrollView

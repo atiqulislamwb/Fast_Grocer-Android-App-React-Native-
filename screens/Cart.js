@@ -22,7 +22,7 @@ const Cart = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <View>
         <CommonHeader title="Cart" />
         {cartItems?.length > 0 && (
@@ -37,7 +37,9 @@ const Cart = () => {
         )}
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{flex: 1, width: '100%'}}>
         {cartItems?.length === 0 ? (
           <View
             style={{
@@ -75,7 +77,7 @@ const Cart = () => {
         ) : (
           <View
             style={{
-              marginTop: 10,
+              marginTop: 8,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -96,10 +98,10 @@ const Cart = () => {
             position: 'absolute',
             bottom: 0,
             left: '5%',
-            height: 60,
+            height: 52,
             width: '100%',
             backgroundColor: '#8B5CF6',
-            borderTopLeftRadius: 30,
+            borderTopLeftRadius: 25,
             padding: 6,
             display: 'flex',
             flexDirection: 'row',
@@ -125,7 +127,7 @@ const Cart = () => {
             <View
               style={{
                 backgroundColor: '#6D28D9',
-                paddingVertical: 3,
+                paddingVertical: 5,
                 paddingHorizontal: 30,
                 borderRadius: 10,
               }}>

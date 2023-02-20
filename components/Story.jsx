@@ -20,7 +20,7 @@ const Story = ({item}) => {
         style={styles.container}>
         <ImageBackground
           source={{uri: item?.image}}
-          resizeMode="cover"
+          resizeMode="contain"
           style={styles.image}>
           <Text style={styles.text}>{item?.name}</Text>
         </ImageBackground>
@@ -88,16 +88,16 @@ export default Story;
 
 const styles = StyleSheet.create({
   container: {
-    width: 110,
-    height: 170,
+    width: 100,
+    height: 180,
     margin: 5,
-    borderRadius: 20,
+    borderRadius: 10,
     zIndex: 1000,
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 5,
+    borderRadius: 10,
   },
   text: {
     fontSize: 11,

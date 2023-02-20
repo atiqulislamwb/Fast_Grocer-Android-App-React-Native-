@@ -8,8 +8,9 @@ import {
   ScrollView,
   IntentAndroid,
   Platform,
+  Linking,
 } from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -17,34 +18,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 import useAuth from '../hooks/useAuth';
+// import {DrawerContentScrollView} from '@react-navigation/drawer';
 
-const DrawerContent = () => {
+const DrawerContent = ({toggleDrawer}) => {
   const navigation = useNavigation();
   const {user} = useAuth();
-  const phoneNumber = '+8801937547204';
 
-  const handleCallPress = () => {
-    if (Platform.OS === 'android') {
-      IntentAndroid.startActivity({
-        action: IntentAndroid.ACTION_DIAL,
-        data: `tel:${phoneNumber}`,
-      });
-    }
-  };
   return (
     <SafeAreaView style={{flex: 1, height: '100%'}}>
-      {/* <TouchableOpacity
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          padding: 5,
-          alignItems: 'flex-start',
-        }}
-        onPress={() => toggleDrawer()}>
-        <Entypo name="squared-cross" color="red" size={35} />
-      </TouchableOpacity> */}
       {user && (
         <TouchableOpacity
           onPress={() => navigation.navigate('Account')}
@@ -392,7 +374,7 @@ const DrawerContent = () => {
         {/* Customer Support */}
 
         <TouchableOpacity
-          onPress={() => (onPress = {handleCallPress})}
+          onPress={() => Linking.openURL('tel:+8801937547204')}
           style={styles.wrapper}>
           <View style={styles.innerWrapper}>
             <View>

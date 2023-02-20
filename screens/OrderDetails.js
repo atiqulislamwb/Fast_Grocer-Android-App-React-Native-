@@ -53,7 +53,8 @@ const OrderDetails = ({route, navigation}) => {
       style={{
         padding: 8,
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#fff',
+        width: '100%',
       }}>
       <CommonHeader title="Your Order Details" />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -257,7 +258,7 @@ const OrderDetails = ({route, navigation}) => {
             padding: 3,
           }}>
           <Text style={{fontSize: 14, color: '#000', fontWeight: '600'}}>
-            Cancel Note
+            {data?.deliver ? `Return Note` : `Cancel Note`}
           </Text>
         </View>
         <View
@@ -265,7 +266,7 @@ const OrderDetails = ({route, navigation}) => {
             margin: 5,
             padding: 5,
           }}>
-          {data?.cancel === '' && (
+          {data?.cancel === '' && !data?.deliver && (
             <TextInput
               multiline={true}
               style={{
@@ -273,9 +274,25 @@ const OrderDetails = ({route, navigation}) => {
                 width: '100%',
                 borderRadius: 5,
                 height: 100,
-                padding: 2,
+                padding: 4,
               }}
-              placeholder="Please tell us why you cancel order ? Thank you!"
+              placeholder="Please tell us why you cancel order Thank you!"
+              onChangeText={cancelText => setCancelText(cancelText)}
+              value={cancelText}
+            />
+          )}
+
+          {data?.deliver && (
+            <TextInput
+              multiline={true}
+              style={{
+                backgroundColor: '#F8F9FD',
+                width: '100%',
+                borderRadius: 5,
+                height: 100,
+                padding: 4,
+              }}
+              placeholder="Please tell us why you return products? Thank you!"
               onChangeText={cancelText => setCancelText(cancelText)}
               value={cancelText}
             />
@@ -289,7 +306,7 @@ const OrderDetails = ({route, navigation}) => {
             marginTop: 15,
             marginBottom: 50,
           }}>
-          {data?.cancel && (
+          {data?.cancel && !data?.deliver && (
             <View>
               <Text
                 style={{
@@ -301,7 +318,7 @@ const OrderDetails = ({route, navigation}) => {
               </Text>
             </View>
           )}
-          {!data?.cancel && (
+          {!data?.cancel && !data?.deliver && (
             <TouchableOpacity
               onPress={() => handleCanReq(data?._id)}
               disabled={cancelText === ''}
@@ -313,10 +330,7 @@ const OrderDetails = ({route, navigation}) => {
                 borderWidth: 1,
                 paddingVertical: 15,
                 paddingHorizontal: 15,
-                backgroundColor:
-                  cancelText === '' || data?.deliver === true
-                    ? '#E1E7F0'
-                    : '#DC2626',
+                backgroundColor: cancelText === '' ? '#E1E7F0' : '#DC2626',
               }}>
               {data?.cancel === '' && (
                 <Text
@@ -330,6 +344,31 @@ const OrderDetails = ({route, navigation}) => {
               )}
             </TouchableOpacity>
           )}
+          {data?.deliver && (
+            <TouchableOpacity
+              onPress={() => handleCanReq(data?._id)}
+              disabled={cancelText === ''}
+              style={{
+                width: '45%',
+                borderRadius: 5,
+                borderColor: '#E2E8F0',
+                ...styles.row,
+                borderWidth: 1,
+                paddingVertical: 15,
+                paddingHorizontal: 15,
+                backgroundColor: '#DC2626',
+              }}>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontWeight: 'bold',
+                  fontSize: 16,
+                }}>
+                Return Product
+              </Text>
+            </TouchableOpacity>
+          )}
+
           <TouchableOpacity
             style={{
               width: '45%',

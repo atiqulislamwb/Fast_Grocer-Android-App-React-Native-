@@ -25,13 +25,12 @@ const TabView = () => {
       screenOptions={{
         tabBarActiveTintColor: '#6BA22C',
         headerShown: false,
-
         tabBarStyle: {
           paddingBottom: 5,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          height: 60,
-          color: '#00000',
+          height: 55,
+          color: '#000',
           shadowOffset: {width: 0, height: 2},
           shadowOpacity: 0.8,
           shadowRadius: 2,
@@ -58,10 +57,6 @@ const TabView = () => {
           tabBarIcon: ({color, size}) => (
             <Foundation name="home" color={color} size={30} />
           ),
-          // tabBarStyle: {
-          //   fontWeight: 'bold',
-          //   color: 'black',
-          // },
         }}
       />
       <Tab.Screen

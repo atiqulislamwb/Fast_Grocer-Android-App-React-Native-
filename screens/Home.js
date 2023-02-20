@@ -12,18 +12,47 @@ import {
   PanResponder,
   Image,
 } from 'react-native';
-import React, {useContext, useRef, useState} from 'react';
-import {StateContext} from '../context/context';
-import Drawer from '../components/Drawer';
+import React, {useMemo, useRef, useState} from 'react';
+
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeTab from '../components/HomeTab';
 import DrawerContent from '../components/DrawerContent';
-import {useGetAllGroceryProducts} from '../redux/services/fastGrocerApi';
+
 const Home = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerAnim] = useState(new Animated.Value(0));
+  const [isDragging, setIsDragging] = useState(false);
+
+  const contentPanResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponder: (event, gestureState) => {
+          // We only want to handle the gesture if it starts from the far left of the screen
+          return (
+            gestureState.dx < 5 &&
+            gestureState.dx > -5 &&
+            gestureState.dy < 5 &&
+            gestureState.dy > -5
+          );
+        },
+        onPanResponderGrant: (event, gestureState) => {
+          setIsDragging(true);
+        },
+        onPanResponderRelease: (event, gestureState) => {
+          setIsDragging(false);
+          if (gestureState.dx < -10) {
+            setDrawerOpen(false);
+            Animated.timing(drawerAnim, {
+              toValue: 0,
+              duration: 250,
+              useNativeDriver: true,
+            }).start();
+          }
+        },
+      }),
+    [],
+  );
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
@@ -34,47 +63,62 @@ const Home = () => {
     }).start();
   };
 
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: (evt, gestureState) => {
-        if (gestureState.dx > 5) {
-          return true;
-        }
-        return false;
-      },
-      onPanResponderMove: (evt, gestureState) => {
-        if (gestureState.dx > 0) {
-          setDrawerOpen(true);
-          Animated.timing(drawerAnim, {
-            toValue: gestureState.dx / 150,
-            duration: 0,
-            useNativeDriver: true,
-          }).start();
-        }
-      },
-      onPanResponderRelease: (evt, gestureState) => {
-        if (gestureState.dx > 75) {
-          Animated.timing(drawerAnim, {
-            toValue: 1,
-            duration: 250,
-            useNativeDriver: true,
-          }).start();
-        } else {
-          setDrawerOpen(false);
-          Animated.timing(drawerAnim, {
-            toValue: 0,
-            duration: 250,
-            useNativeDriver: true,
-          }).start();
-        }
-      },
-    }),
-  ).current;
+  // const panResponder = useRef(
+  //   PanResponder.create({
+  //     onMoveShouldSetPanResponder: (evt, gestureState) => {
+  //       if (gestureState.dx > 5) {
+  //         return true;
+  //       }
+  //       return false;
+  //     },
+  //     onPanResponderMove: (evt, gestureState) => {
+  //       if (gestureState.dx > 5) {
+  //         setDrawerOpen(true); // use setDrawerOpen to update the state
+  //         Animated.timing(drawerAnim, {
+  //           toValue: 1,
+  //           duration: 300,
+  //           useNativeDriver: true,
+  //         }).start();
+  //       } else if (gestureState.dx < -5) {
+  //         setDrawerOpen(false); // use setDrawerOpen to update the state
+  //         Animated.timing(drawerAnim, {
+  //           toValue: 0,
+  //           duration: 300,
+  //           useNativeDriver: true,
+  //         }).start();
+  //       }
+  //       if (gestureState.dx < -150) {
+  //         setDrawerOpen(false); // use setDrawerOpen to update the state
+  //         Animated.timing(drawerAnim, {
+  //           toValue: 0,
+  //           duration: 300,
+  //           useNativeDriver: true,
+  //         }).start();
+  //       }
+  //     },
+  //     onPanResponderRelease: (evt, gestureState) => {
+  //       if (gestureState.dx > 75) {
+  //         Animated.timing(drawerAnim, {
+  //           toValue: 1,
+  //           duration: 250,
+  //           useNativeDriver: true,
+  //         }).start();
+  //       } else {
+  //         setDrawerOpen(false);
+  //         Animated.timing(drawerAnim, {
+  //           toValue: 0,
+  //           duration: 250,
+  //           useNativeDriver: true,
+  //         }).start();
+  //       }
+  //     },
+  //   }),
+  // ).current;
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <StatusBar animated={true} />
-      <View {...panResponder.panHandlers} style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.container2}>
           <TouchableOpacity onPress={() => toggleDrawer()}>
             <AntDesign name="menu-fold" color="black" size={33} />
@@ -116,10 +160,13 @@ const Home = () => {
             />
           </View>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          // {...panResponder.panHandlers}
+          showsVerticalScrollIndicator={false}>
           <HomeTab />
         </ScrollView>
         <Animated.View
+          {...contentPanResponder.panHandlers}
           style={[
             styles.drawerContainer,
             {

@@ -12,7 +12,7 @@ import Questions from '../components/QuestionFaq';
 
 const EggClub = () => {
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Egg Club" />
       <ScrollView style={{padding: 4}} showsVerticalScrollIndicator={false}>
         <View

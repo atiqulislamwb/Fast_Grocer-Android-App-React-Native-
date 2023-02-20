@@ -19,7 +19,7 @@ const Account = () => {
   const {user, handleLogout} = useAuth();
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <View>
         <View
           style={{

@@ -4,11 +4,7 @@ export const storyData = [
     name: 'Daily Deals',
     image: 'https://i.ibb.co/dfp0dtS/Screenshot-2023-01-14-231153.png',
   },
-  {
-    id: 2,
-    name: 'Fresh EveryDay',
-    image: 'https://i.ibb.co/BzTFDky/Screenshot-2023-01-14-231229.pngr',
-  },
+
   {
     id: 3,
     name: 'CookUps',
@@ -30,5 +26,3 @@ export const storyData = [
     image: 'https://i.ibb.co/557nX3b/Screenshot-2023-01-14-231244.png',
   },
 ];
-
-

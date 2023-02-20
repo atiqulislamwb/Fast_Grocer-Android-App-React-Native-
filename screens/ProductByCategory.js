@@ -17,11 +17,7 @@ const ProductByCategory = ({route}) => {
   );
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: '#fff',
-        flex: 1,
-      }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title={data?.name} />
 
       <View>

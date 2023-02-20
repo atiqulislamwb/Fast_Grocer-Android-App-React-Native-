@@ -32,7 +32,7 @@ const OrderHistory = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#F4F4F5'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#F4F4F5', width: '100%'}}>
       <CommonHeader title="Your Order History" />
 
       <View style={styles.tabWrapper}>

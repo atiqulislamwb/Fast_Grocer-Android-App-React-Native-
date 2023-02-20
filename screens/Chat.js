@@ -8,7 +8,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 const Chat = () => {
   const [message, setMessage] = useState('');
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <ChatHeader />
       <ChatBody />
       <View style={styles.input}>

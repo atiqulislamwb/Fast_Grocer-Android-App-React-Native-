@@ -50,7 +50,7 @@ const FileComplaint = () => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="File a Complaint" />
       <View style={styles.container}>
         <Text style={{fontSize: 14, color: '#000', textAlign: 'center'}}>

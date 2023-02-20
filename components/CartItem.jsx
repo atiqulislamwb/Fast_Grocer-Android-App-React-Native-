@@ -113,7 +113,7 @@ const CartItem = ({item}) => {
             </View>
             <View
               style={{
-                width: '60%',
+                width: '50%',
               }}>
               <View
                 style={{
@@ -196,7 +196,7 @@ export default CartItem;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 7,
+    paddingVertical: 7,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',

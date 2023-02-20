@@ -21,7 +21,7 @@ const Search = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#F1F5F9', width: '100%'}}>
       <CommonHeader title="Search" />
 
       <TouchableOpacity
@@ -34,14 +34,14 @@ const Search = () => {
           width: '90%',
           backgroundColor: '#ffffff',
           marginTop: 30,
-          borderRadius: 20,
+          borderRadius: 10,
           marginLeft: 20,
           marginRight: 20,
         }}
         onPress={() => {
           navigation.navigate('GroceryResult');
         }}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000'}}>
           Grocery Search
         </Text>
         <View
@@ -67,14 +67,14 @@ const Search = () => {
           width: '90%',
           backgroundColor: '#ffffff',
           marginTop: 20,
-          borderRadius: 20,
+          borderRadius: 10,
           marginLeft: 20,
           marginRight: 20,
         }}
         onPress={() => {
           navigation.navigate('PharmacyResult');
         }}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000'}}>
           Medicine Search
         </Text>
         <View

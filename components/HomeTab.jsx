@@ -22,7 +22,7 @@ const HomeTab = () => {
   };
 
   return (
-    <View style={{marginTop: 15}}>
+    <View style={{marginTop: 5}}>
       <View style={styles.wrapper}>
         <TouchableOpacity
           style={{

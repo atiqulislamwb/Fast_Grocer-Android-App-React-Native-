@@ -102,11 +102,7 @@ const PlaceOrder = ({route, navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-      }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Confirm Your Order" />
 
       <ScrollView

@@ -25,7 +25,7 @@ const Help = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Help" />
       <View style={{width: '100%', height: 130, padding: 5}}>
         <Image

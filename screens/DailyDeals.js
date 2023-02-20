@@ -62,7 +62,7 @@ const Questions = ({question, answer}) => {
 const DailyDeals = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Daily Deals" />
       <LinearGradient
         colors={['#8DD1FB', '#A4DFF1', '#B2E8EC']}

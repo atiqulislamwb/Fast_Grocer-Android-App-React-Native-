@@ -60,7 +60,7 @@ const Favorites = ({navigation}) => {
   if (isLoading) return <Loader />;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Favorites" />
 
       <ScrollView style={{padding: 4}} showsVerticalScrollIndicator={false}>

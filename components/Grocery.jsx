@@ -27,23 +27,13 @@ const Grocery = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
-      <View>
-        <Deal />
-      </View>
-
+      <Deal />
       <HomeCategory />
-
       <FlashSales />
-
       <FreshVegetables />
-
       <Biscuits />
-
       <SaltSugar />
-
-      <View>
-        <HomeCarousel />
-      </View>
+      <HomeCarousel />
       <FreshFruits />
       <Noodles />
       <Oil />

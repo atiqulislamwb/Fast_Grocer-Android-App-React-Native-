@@ -16,7 +16,7 @@ const ProductDetails = ({route, navigation}) => {
   const {data} = route.params;
   console.log('Product details');
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Product Details" />
       <ScrollView style={{padding: 5}} showsVerticalScrollIndicator={false}>
         <Text
@@ -142,7 +142,7 @@ const ProductDetails = ({route, navigation}) => {
       <View
         style={{
           position: 'absolute',
-          bottom: 20,
+          bottom: 4,
           right: 0,
           left: 0,
           display: 'flex',
