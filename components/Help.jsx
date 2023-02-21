@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -36,7 +36,9 @@ const Help = () => {
               Live Chat
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            onPress={() => Linking.openURL('tel:+8801937547204')}
+            style={styles.button}>
             <Feather name="phone-call" color="#6BA22C" size={20} />
             <Text
               style={{

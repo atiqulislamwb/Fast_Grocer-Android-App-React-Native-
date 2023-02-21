@@ -40,14 +40,40 @@ const Deal = () => {
         }}>
         <TouchableOpacity
           onPress={() => navigation.navigate('EggClub')}
-          style={{height: 100, marginTop: 10, width: 150}}>
-          <Image
-            source={{
-              uri: 'https://i.ibb.co/72R52B4/Screenshot-2023-02-15-111221.png',
-            }}
-            style={{width: '100%', height: '100%', borderRadius: 10}}
-            resizeMode="contain"
-          />
+          style={{
+            height: 100,
+            marginTop: 10,
+            width: 150,
+            borderRadius: 10,
+            backgroundColor: '#FFDD93',
+          }}>
+          <View style={{padding: 10}}>
+            <Text
+              style={{
+                color: '#000',
+                fontWeight: '400',
+                fontSize: 11,
+                paddingTop: 6,
+              }}>
+              Spend ৳5000 to reach{' '}
+            </Text>
+            <Text
+              style={{
+                color: '#000',
+                fontSize: 14,
+                paddingTop: 3,
+                fontWeight: 'bold',
+              }}>
+              Bronze
+            </Text>
+          </View>
+          <View
+            style={{
+              marginTop: 8,
+              width: '100%',
+              height: 7,
+              backgroundColor: '#fff',
+            }}></View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -186,7 +212,7 @@ const styles = StyleSheet.create({
   },
 
   modalContent: {
-    height: '55%',
+    height: '53%',
     width: '95%',
     backgroundColor: '#fff',
     borderRadius: 10,
