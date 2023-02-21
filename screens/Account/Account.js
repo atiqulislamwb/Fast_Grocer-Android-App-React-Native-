@@ -15,42 +15,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {useNavigation} from '@react-navigation/native';
 import {StateContext} from './../../context/context';
 import useAuth from './../../hooks/useAuth';
+import CommonHeader from '../../components/CommonHeader';
 const Account = () => {
   const {user, handleLogout} = useAuth();
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
+      <CommonHeader title="Profile" />
       <View>
-        <View
-          style={{
-            width: '100%',
-            height: 57,
-            padding: 10,
-            backgroundColor: '#F8FAFC',
-            borderBottomColor: '#E2E8F0',
-            borderBottomWidth: 1,
-          }}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: 3,
-              flexDirection: 'row',
-              marginLeft: 6,
-            }}>
-            <AntDesign name="arrowleft" size={35} color="#000" />
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: '#000',
-                marginLeft: 12,
-              }}>
-              Profile
-            </Text>
-          </TouchableOpacity>
-        </View>
         <View>
           <View
             style={{
@@ -70,12 +42,9 @@ const Account = () => {
                 height: 100,
                 marginTop: 20,
                 borderRadius: 30,
-
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderColor: '#79AB42',
-                borderWidth: 2,
                 flexDirection: 'column',
                 marginBottom: 10,
               }}>
@@ -83,7 +52,7 @@ const Account = () => {
                 source={{
                   uri:
                     user?.photoUrl ||
-                    'https://i.ibb.co/PC1s2Wx/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png',
+                    'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png',
                 }}
                 resizeMode="cover"
                 style={{width: '100%', height: '100%'}}

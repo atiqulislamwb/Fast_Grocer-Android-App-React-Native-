@@ -40,6 +40,9 @@ import FileComplaint from './screens/FileComplaint';
 import OrderDetails from './screens/OrderDetails';
 import store from './redux/store';
 import {Provider} from 'react-redux';
+import Notifications from './screens/Account/Notifications';
+import ChangePassword from './screens/Account/ChangePassword';
+import DeleteAccount from './screens/Account/DeleteAccount';
 const queryClient = new QueryClient();
 const Stack = createStackNavigator();
 
@@ -91,6 +94,9 @@ const App = () => {
               <Stack.Screen name="Nagad" component={Nagad} />
               {/* user Account */}
               <Stack.Screen name="Account" component={Account} />
+              <Stack.Screen name="Notifications" component={Notifications} />
+              <Stack.Screen name="ChangePassword" component={ChangePassword} />
+              <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
               <Stack.Screen
                 name="PersonalInformation"
                 component={PersonalInformation}
