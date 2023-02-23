@@ -18,7 +18,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import HomeTab from '../components/HomeTab';
 import DrawerContent from '../components/DrawerContent';
-
+import {GiftedChat} from 'react-native-gifted-chat';
 const Home = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerAnim] = useState(new Animated.Value(0));
@@ -116,20 +116,28 @@ const Home = () => {
   // ).current;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <StatusBar animated={true} />
-      <View style={styles.container}>
-        <View style={styles.container2}>
+
+      <View style={styles.container2}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 10,
+            columnGap: 10,
+          }}>
           <TouchableOpacity onPress={() => toggleDrawer()}>
-            <AntDesign name="menu-fold" color="black" size={33} />
+            <AntDesign name="menu-fold" color="black" size={30} />
           </TouchableOpacity>
           <View
             style={{
               display: 'flex',
-              flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              marginLeft: 20,
+              flexDirection: 'row',
             }}>
             <View
               style={{
@@ -138,50 +146,52 @@ const Home = () => {
                 alignItems: 'center',
                 backgroundColor: '#6BA22C',
                 padding: 3,
-                width: 30,
-                height: 30,
-                borderRadius: 20,
-                marginRight: 10,
+                width: 25,
+                height: 25,
+                borderRadius: 15,
+                marginRight: 6,
               }}>
-              <Entypo name="location-pin" color="white" size={22} />
+              <Entypo name="location-pin" color="white" size={20} />
             </View>
             <View>
-              <Text
-                style={{fontSize: 16, color: '#000000', fontWeight: 'bold'}}>
+              <Text style={{fontSize: 16, color: '#000000', fontWeight: '600'}}>
                 Dhaka
               </Text>
             </View>
           </View>
-          <View style={{marginLeft: 120, marginTop: 10}}>
-            <Image
-              source={require('../assets/appLogo.png')}
-              style={{width: 115, height: 140}}
-              resizeMode="contain"
-            />
-          </View>
         </View>
-        <ScrollView
-          // {...panResponder.panHandlers}
-          showsVerticalScrollIndicator={false}>
-          <HomeTab />
-        </ScrollView>
-        <Animated.View
-          {...contentPanResponder.panHandlers}
-          style={[
-            styles.drawerContainer,
-            {
-              transform: [
-                {
-                  translateX: drawerAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [-310, 0],
-                  }),
-                },
-              ],
-            },
-          ]}>
-          <DrawerContent toggleDrawer={toggleDrawer} />
-        </Animated.View>
+        <View style={{marginRight: 50}}>
+          <Image
+            source={require('../assets/appLogo.png')}
+            style={{width: 80}}
+            resizeMode="contain"
+          />
+        </View>
+      </View>
+      <ScrollView
+        // {...panResponder.panHandlers}
+        showsVerticalScrollIndicator={false}>
+        <HomeTab />
+      </ScrollView>
+      <Animated.View
+        {...contentPanResponder.panHandlers}
+        style={[
+          styles.drawerContainer,
+          {
+            transform: [
+              {
+                translateX: drawerAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [-310, 0],
+                }),
+              },
+            ],
+          },
+        ]}>
+        <DrawerContent toggleDrawer={toggleDrawer} />
+      </Animated.View>
+      <View style={{position: 'absolute', right: 10, bottom: 100}}>
+        <GiftedChat />
       </View>
     </SafeAreaView>
   );
@@ -213,14 +223,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    height: 70,
-    shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 5},
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    backgroundColor: 'white',
-    zIndex: 10000,
+    justifyContent: 'space-between',
+    padding: 5,
+    height: 55,
+    borderBottomColor: '#E2E8F0',
+    borderBottomWidth: 1,
+    zIndex: 11,
+    width: '100%',
   },
 });
 

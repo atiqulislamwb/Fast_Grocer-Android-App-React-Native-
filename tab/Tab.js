@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Home from '../screens/Home';
@@ -12,10 +12,14 @@ import Categories from '../screens/Categories';
 import {useNavigation} from '@react-navigation/native';
 import Search from './../screens/Search';
 import SplashScreen from 'react-native-splash-screen';
+import {StateContext} from '../context/context';
+
 const Tab = createBottomTabNavigator();
 
 const TabView = () => {
   const navigation = useNavigation();
+  const {cartItems} = useContext(StateContext);
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -97,7 +101,22 @@ const TabView = () => {
             );
           },
           tabBarIcon: ({color, size}) => (
-            <AntDesign name="shoppingcart" color={color} size={28} />
+            <View>
+              {cartItems.length > 0 && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: 2,
+                    right: 0,
+                    width: 8,
+                    height: 8,
+                    borderRadius: 4,
+                    backgroundColor: '#F70000',
+                    zIndex: 17,
+                  }}></View>
+              )}
+              <AntDesign name="shoppingcart" color={color} size={28} />
+            </View>
           ),
         }}
       />

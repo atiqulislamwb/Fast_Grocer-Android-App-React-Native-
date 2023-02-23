@@ -35,16 +35,11 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    const unSubscribed = onAuthStateChanged(auth, currentUser => {
-      setLoading(true);
+    const unSubscribed = onAuthStateChanged(auth, async currentUser => {
       setUser(currentUser);
-
       setLoading(false);
     });
-    return () => {
-      unSubscribed();
-      setLoading(false);
-    };
+    return () => unSubscribed();
   }, [user]);
   const userFromDb = data?.data;
   return {

@@ -59,8 +59,8 @@ const DrawerContent = ({toggleDrawer}) => {
             <Image
               source={{
                 uri:
-                  user?.photoUrl ||
-                  'https://i.ibb.co/PC1s2Wx/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png',
+                  user?.photoURL ||
+                  'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png',
               }}
               resizeMode="cover"
               style={{width: '100%', height: '100%'}}
@@ -386,21 +386,23 @@ const DrawerContent = ({toggleDrawer}) => {
         </TouchableOpacity>
 
         {/* Live chat */}
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Chat')}
-          style={styles.wrapper}>
-          <View style={styles.innerWrapper}>
-            <View>
-              <MaterialCommunityIcons
-                name="chat-alert-outline"
-                size={28}
-                color="#79AB42"
-              />
-            </View>
+        {user && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('NewMessage')}
+            style={styles.wrapper}>
+            <View style={styles.innerWrapper}>
+              <View>
+                <MaterialCommunityIcons
+                  name="chat-alert-outline"
+                  size={28}
+                  color="#79AB42"
+                />
+              </View>
 
-            <Text style={styles.text}>Live Chat</Text>
-          </View>
-        </TouchableOpacity>
+              <Text style={styles.text}>Live Chat</Text>
+            </View>
+          </TouchableOpacity>
+        )}
 
         <View
           style={{

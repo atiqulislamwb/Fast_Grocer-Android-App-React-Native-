@@ -19,6 +19,7 @@ import CommonHeader from '../../components/CommonHeader';
 const Account = () => {
   const {user, handleLogout} = useAuth();
   const navigation = useNavigation();
+  console.log(user);
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
       <CommonHeader title="Profile" />
@@ -51,7 +52,7 @@ const Account = () => {
               <Image
                 source={{
                   uri:
-                    user?.photoUrl ||
+                    user?.photoURL ||
                     'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png',
                 }}
                 resizeMode="cover"

@@ -12,7 +12,7 @@ import Offers from './screens/Offers';
 import DailyDeals from './screens/DailyDeals';
 import Help from './screens/Help';
 import Support from './screens/Support';
-import Chat from './screens/Chat';
+
 import SignUp from './screens/SignUp';
 import EggClub from './screens/EggClub';
 import Categories from './screens/Categories';
@@ -43,6 +43,7 @@ import {Provider} from 'react-redux';
 import Notifications from './screens/Account/Notifications';
 import ChangePassword from './screens/Account/ChangePassword';
 import DeleteAccount from './screens/Account/DeleteAccount';
+import NewMessage from './screens/NewMessage';
 const queryClient = new QueryClient();
 const Stack = createStackNavigator();
 
@@ -77,7 +78,7 @@ const App = () => {
               <Stack.Screen name="DailyDeals" component={DailyDeals} />
               <Stack.Screen name="Help" component={Help} />
               <Stack.Screen name="Support" component={Support} />
-              <Stack.Screen name="Chat" component={Chat} />
+              <Stack.Screen name="NewMessage" component={NewMessage} />
               <Stack.Screen name="Coupons" component={Coupons} />
               <Stack.Screen name="Favorites" component={Favorites} />
               <Stack.Screen name="OrderHistory" component={OrderHistory} />

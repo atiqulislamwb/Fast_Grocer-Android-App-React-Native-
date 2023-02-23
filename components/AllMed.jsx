@@ -12,9 +12,11 @@ import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {useGetAllMedProductsQuery} from '../redux/services/fastGrocerApi';
+import useMedProducts from '../hooks/useMedProducts';
 
 const AllMed = () => {
-  const {data, isLoading} = useGetAllMedProductsQuery();
+  //const {data, isLoading} = useGetAllMedProductsQuery();
+  const {data, isLoading} = useMedProducts();
   const medProducts = data?.data;
   return (
     <View

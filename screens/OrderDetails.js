@@ -18,7 +18,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import DeliveryProduct from '../components/DeliveryProduct';
 import useOrder from '../hooks/useOrder';
 import CommonHeader from '../components/CommonHeader';
-const OrderDetails = ({route, navigation}) => {
+
+const OrderDetails = ({route}) => {
   const [cancelText, setCancelText] = useState();
   const {refetch} = useOrder();
   const {data} = route.params;

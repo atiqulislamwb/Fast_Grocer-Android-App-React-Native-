@@ -14,12 +14,10 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 
 import app from '../firebase/auth.js';
 
-import {StateContext} from './../context/context';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -39,8 +37,7 @@ const SignUp = () => {
   const provider = new GoogleAuthProvider();
   const navigation = useNavigation();
 
-  const {loading, setLoading} = useContext(StateContext);
-  const {user, setUser} = useAuth();
+  const {setUser, loading, setLoading} = useAuth();
 
   const handleSignUp = () => {
     if (!name) {
@@ -70,25 +67,25 @@ const SignUp = () => {
       return;
     }
     const role = 'user';
-
+    setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
         setUser(user);
         updateName(name);
         saveToDatabase(user);
-        setLoading(false);
+
         ToastAndroid.show('Sign Up Successfully', ToastAndroid.SHORT);
         setName('');
         setEmail('');
         setAddress('');
         setPassword('');
+        setLoading(false);
         Keyboard.dismiss();
+        navigation.navigate('Login');
       })
       .catch(error => {
         console.log(error);
-
-        setLoading(false);
       });
     setLoading(false);
   };
@@ -113,8 +110,7 @@ const SignUp = () => {
       address: user?.address,
       createdAt: new Date(),
     };
-    console.log(user?.displayName);
-    setLoading(true);
+
     fetch(`https://fgrocer.vercel.app/users/${email}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -123,13 +119,11 @@ const SignUp = () => {
       .then(response => response.json())
       .then(data => {
         if (data.status === true) {
-          setLoading(false);
           console.log('save to database successfully');
         } else {
           console.log('data not save to database ');
         }
       });
-    setLoading(false);
   };
 
   // const handleGoogleSignUp = () => {
@@ -194,7 +188,6 @@ const SignUp = () => {
         <Text>
           {loading && <ActivityIndicator size="small" color="#0000ff" />}{' '}
         </Text>
-
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>

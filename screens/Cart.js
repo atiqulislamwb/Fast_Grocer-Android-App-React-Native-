@@ -8,17 +8,18 @@ import {
 } from 'react-native';
 import React, {useContext} from 'react';
 import CouponCode from '../components/CouponCode';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import CartItem from '../components/CartItem';
-import {StateContext} from '../context/context';
+
 import CommonHeader from '../components/CommonHeader';
+import {StateContext} from './../context/context';
+import useAuth from './../hooks/useAuth';
 
 const Cart = () => {
   const {cartItems, totalPrice} = useContext(StateContext);
+  const {user} = useAuth();
   const navigation = useNavigation();
 
   return (
@@ -91,7 +92,7 @@ const Cart = () => {
         )}
       </ScrollView>
 
-      {cartItems.length > 0 && (
+      {cartItems.length > 0 && user && (
         <TouchableOpacity
           onPress={() => navigation.navigate('PlaceOrder', {data: cartItems})}
           style={{
@@ -141,6 +142,30 @@ const Cart = () => {
               </Text>
             </View>
           </View>
+        </TouchableOpacity>
+      )}
+
+      {!user && (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Login')}
+          style={{
+            position: 'absolute',
+            bottom: 5,
+            left: '5%',
+            right: '5%',
+            height: 40,
+            width: '90%',
+            backgroundColor: '#6BA22C',
+            padding: 6,
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            borderRadius: 5,
+          }}>
+          <Text style={{fontSize: 16, fontWeight: 'bold', color: '#fff'}}>
+            Login
+          </Text>
         </TouchableOpacity>
       )}
     </SafeAreaView>

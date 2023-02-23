@@ -141,7 +141,6 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     padding: 8,
     color: '#000',
-    placeholderTextColor: '#000',
   },
   vrifyButton: {
     backgroundColor: '#64748B',

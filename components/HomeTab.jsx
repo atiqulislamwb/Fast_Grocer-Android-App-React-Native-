@@ -26,8 +26,8 @@ const HomeTab = () => {
       <View style={styles.wrapper}>
         <TouchableOpacity
           style={{
-            width: 112,
-            height: 50,
+            width: 110,
+            height: 45,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -59,8 +59,8 @@ const HomeTab = () => {
 
         <TouchableOpacity
           style={{
-            width: 112,
-            height: 50,
+            width: 110,
+            height: 45,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -89,7 +89,7 @@ const HomeTab = () => {
           </View>
           <Text
             style={{
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: '500',
               color: activeTab === 'tab2' ? '#ffffff' : '#000000',
             }}>
@@ -99,8 +99,8 @@ const HomeTab = () => {
 
         <TouchableOpacity
           style={{
-            width: 112,
-            height: 50,
+            width: 110,
+            height: 45,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -128,7 +128,7 @@ const HomeTab = () => {
           </View>
           <Text
             style={{
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: '500',
               color: '#475569',
               marginRight: 5,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '500',
     color: 'black',
   },

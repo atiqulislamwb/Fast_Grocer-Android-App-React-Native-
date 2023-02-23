@@ -12,9 +12,11 @@ import ProductItem from './ProductItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {useGetAllGroceryProductsQuery} from '../redux/services/fastGrocerApi';
+import useGroceryProducts from '../hooks/useGroceryProducts';
 
 const Oil = () => {
-  const {data, isLoading} = useGetAllGroceryProductsQuery();
+  //const {data, isLoading} = useGetAllGroceryProductsQuery();
+  const {data, isLoading} = useGroceryProducts();
   const oil = data?.data?.filter(product => product?.status === 'oil');
   return (
     <View

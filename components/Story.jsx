@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   container: {
     width: 100,
     height: 180,
-    margin: 5,
+    marginHorizontal: 6,
     borderRadius: 10,
     zIndex: 1000,
   },

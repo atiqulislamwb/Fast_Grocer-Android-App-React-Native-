@@ -39,12 +39,12 @@ const Timer = () => {
             seconds: 59,
             minutes: countdown.minutes - 1,
           };
-        } else if (countdown.hours > 0) {
+        } else if (countdown?.hours > 0) {
           return {
             ...countdown,
             seconds: 59,
             minutes: 59,
-            hours: countdown.hours - 1,
+            hours: countdown?.hours - 1,
           };
         }
       });

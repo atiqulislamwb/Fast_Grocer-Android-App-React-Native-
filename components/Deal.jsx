@@ -55,7 +55,7 @@ const Deal = () => {
                 fontSize: 11,
                 paddingTop: 6,
               }}>
-              Spend ৳5000 to reach{' '}
+              Spend ৳5000 to reach
             </Text>
             <Text
               style={{
