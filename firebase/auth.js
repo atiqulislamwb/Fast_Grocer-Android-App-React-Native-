@@ -11,8 +11,8 @@ import {
   messagingSenderId,
   appId,
 } from '@env';
-import {getFirestore} from 'firebase/firestore';
 import {getAuth} from 'firebase/auth';
+import {getFirestore} from 'firebase/firestore';
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyBmuHIk5YVCl2jenhvMnKHskluMxqMEhmo',

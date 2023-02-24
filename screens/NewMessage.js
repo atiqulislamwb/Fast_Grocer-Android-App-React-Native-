@@ -16,13 +16,12 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useCollection} from 'react-firebase-hooks/firestore';
-import {useAuthState} from 'react-firebase-hooks/auth';
 import {db, auth} from '../firebase/auth';
 import {
+  query,
   collection,
   orderBy,
-  limit,
-  query,
+  onSnapshot,
   addDoc,
   serverTimestamp,
 } from 'firebase/firestore';
@@ -30,9 +29,7 @@ import useAuth from '../hooks/useAuth';
 
 const ChatMessage = ({message}) => {
   const {user} = useAuth();
-
-  const {text, uid, photoURL} = message;
-  const SENDER = uid === auth.currentUser.uid;
+  console.log(message);
   return (
     <View
       style={{
@@ -61,12 +58,12 @@ const ChatMessage = ({message}) => {
             fontSize: 15,
             textAlign: 'right',
           }}>
-          {user?.displayName || 'Anonymous'}
+          {message.name || 'Anonymous'}
         </Text>
         <View>
           <Text
             style={{
-              backgroundColor: SENDER ? '#E76060' : '#D1D5DB',
+              backgroundColor: '#E76060',
               paddingVertical: 8,
               paddingHorizontal: 10,
 
@@ -74,7 +71,7 @@ const ChatMessage = ({message}) => {
               color: '#fff',
               borderRadius: 8,
             }}>
-            {text}
+            {message.text}
           </Text>
         </View>
       </View>
@@ -123,15 +120,13 @@ const ChatBody = ({messages}) => {
       <View
         style={{
           display: 'flex',
-          flexDirection: 'column-reverse',
+          flexDirection: 'column',
           alignItems: 'flex-end',
           rowGap: 5,
           columnGap: 5,
         }}>
         {messages &&
-          messages.docs.map(msg => (
-            <ChatMessage key={msg.id} message={msg.data()} />
-          ))}
+          messages?.map(msg => <ChatMessage key={msg.id} message={msg} />)}
       </View>
     </View>
   );
@@ -139,23 +134,30 @@ const ChatBody = ({messages}) => {
 
 const NewMessage = () => {
   const [text, setText] = useState('');
-  const {user} = useAuth();
-  const messageRef = collection(db, 'messages');
-  const queryRef = query(messageRef, orderBy('createdAt', 'desc'), limit(50));
-  const [messages] = useCollection(queryRef, {idField: 'id'});
+  const [messages, setMessages] = useState([]);
 
   const sendMessage = async text => {
-    const payload = {
+    const {uid, displayName} = auth.currentUser;
+    await addDoc(collection(db, 'messages'), {
       text: text,
-      createdAt: serverTimestamp(),
-      uid: user?.uid || 'anonymous',
-      photoURL:
-        user?.photoURL ||
-        'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png',
-    };
-    await addDoc(messageRef, payload);
+      name: displayName,
+      uid,
+      timestamp: serverTimestamp(),
+    });
     setText('');
   };
+
+  useEffect(() => {
+    const q = query(collection(db, 'messages'), orderBy('timestamp'));
+    const unsubscribe = onSnapshot(q, querySnapshot => {
+      let messages = [];
+      querySnapshot.forEach(doc => {
+        messages.push({...doc.data(), id: doc.id});
+      });
+      setMessages(messages);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff', width: '100%'}}>
